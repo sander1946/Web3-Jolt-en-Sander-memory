@@ -1,0 +1,114 @@
+body {
+    display: grid;
+    grid-template-areas: 
+        "header sidebar"
+        "game-board sidebar"
+    ;
+    grid-template-columns: 60vw 40vw;
+    grid-gap: 10px;
+    max-width: 98vw;
+
+}
+
+.header-wrapper {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    text-align: center; 
+}
+
+.sidebar-wrapper {
+    grid-area: sidebar;
+    display: flex;
+    justify-content: center;
+}
+
+.game-board {
+    grid-area: game-board;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+}
+
+.game-board .row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.game-board .card {
+    display: flex;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    aspect-ratio: 1/1;
+}
+
+.game-board .card .card-text {
+    margin: auto;
+    font-size: 20px;
+    color: white;
+}
+
+.game-board .closed{
+    background-color: #89f357;
+}
+
+.game-board .open{
+    background-color: #438400;
+}
+
+.game-board .found{
+    background-color: #722c80;
+}
+
+@media (max-width: 450px) {
+    body {
+        grid-template-areas: 
+            "header"
+            "game-board"
+            "sidebar"
+        ;
+        grid-template-columns: 1fr;
+    }
+
+    .game-board .row {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (min-width: 450px) and (max-width: 750px) {
+    body {
+        grid-template-areas: 
+            "header"
+            "game-board"
+            "sidebar"
+        ;
+        grid-template-columns: 60vw;
+        justify-content: center;
+    }
+
+    .game-board .row {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (min-width: 750px) {
+    body {
+        grid-template-areas: 
+            "header header"
+            "game-board sidebar"
+        ;
+        grid-template-columns: 50vw 50vw;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+
+    .game-board .row {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Information header, On the top of the page -->
+    <div class="header-wrapper">
+        <div class="header">
+            <h1>Javascript memory</h1>
+            <p class="time-past">Verlopen tijd: 
+                <span id="time-past-time">64 seconden</span>.
+            </p>
+            <p class="pairs">Gevonden kaart-paren: 
+                <span id="pairs-count">1</span>.
+            </p>
+            <div class="time-left">
+                <p class="time-left-text">Resterende toontijd:</p>
+                <progress id="time-left-progress" class="time-left-bar" value="80" max="100"></div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- 6x6 Game board, in the middle left of the page -->
+    <div class="game-container">
+        <div class="game-board" id="game-board">
+            <!-- Cards will be generated here by JavaScript -->
+            <div class="row" id="row-1">
+                <div class="card closed" id="card-1"><span class="card-text">*</span></div>
+                <div class="card found" id="card-2"><span class="card-text">E</span></div>
+                <div class="card found" id="card-3"><span class="card-text">E</span></div>
+                <div class="card closed" id="card-4"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-5"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-6"><span class="card-text">*</span></div>
+            </div>
+            <div class="row" id="row-2">
+                <div class="card closed" id="card-7"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-8"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-9"><span class="card-text">*</span></div>
+                <div class="card open" id="card-10"><span class="card-text">M</span></div>
+                <div class="card closed" id="card-11"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-12"><span class="card-text">*</span></div>
+            </div>
+            <div class="row" id="row-3">
+                <div class="card closed" id="card-13"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-14"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-15"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-16"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-17"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-18"><span class="card-text">*</span></div>
+            </div>
+            <div class="row" id="row-4">
+                <div class="card closed" id="card-19"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-20"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-21"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-22"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-23"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-24"><span class="card-text">*</span></div>
+            </div>
+            <div class="row" id="row-5">
+                <div class="card closed" id="card-25"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-26"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-27"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-28"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-29"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-30"><span class="card-text">*</span></div>
+            </div>
+            <div class="row" id="row-6">
+                <div class="card closed" id="card-31"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-32"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-33"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-34"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-35"><span class="card-text">*</span></div>
+                <div class="card closed" id="card-36"><span class="card-text">*</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- sidebar, at the right of the page -->
+    <div class="sidebar-wrapper">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="leaderboard">
+                    <h2 class="leaderboard-name">Top vijf</h2>
+                    <ol type="1">
+                        <li><span class="leaderboard-item" id="leaderboard-item-1">Barack Obama</span> : <span class="leaderboard-score" id="leaderboard-score-1">200</span></li>
+                        <li><span class="leaderboard-item" id="leaderboard-item-2">Bernie Sanders</span> : <span class="leaderboard-score" id="leaderboard-score-1">300</span></li>
+                        <li><span class="leaderboard-item" id="leaderboard-item-3">Hillary Clinton</span> : <span class="leaderboard-score" id="leaderboard-score-1">400</span></li>
+                        <li><span class="leaderboard-item" id="leaderboard-item-4">Donald Trump</span> : <span class="leaderboard-score" id="leaderboard-score-1">500</span></li>
+                        <li><span class="leaderboard-item" id="leaderboard-item-5">Jeb Bush</span> : <span class="leaderboard-score" id="leaderboard-score-1">600</span></li>
+                    </ol>
+                    <h2 class="avg-time">Gemiddelde speeltijd: 
+                        <span class="">0s (64s)</span>
+                    </h2>
+                    <h2 class="display-char">Karakter op kaarten:
+                        <select name="display-char-select" id="display-char-select">
+                            <option value="*" selected>*</option>
+                            <option value=" "> </option>
+                        </select>
+                    </h2>
+                    <h2 class="board-size">Afmeting bord:
+                        <select name="board-size-select" id="board-size-select">
+                            <option value="4">4</option>
+                            <option value="6" selected>6</option>
+                            <option value="8">8</option>
+                        </select>
+                    </h2>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="legend">
+                    <div class="legend-item">
+                        <button class="legend-color" id="legend-color">Kaartkleur</button>
+                        <input id="legend-color-input-1" type="color" value="#acf789" class="legend-color-input">
+                    </div>
+                    <div class="legend-item">
+                        <button class="legend-color" id="legend-color">Open</button>
+                        <input id="legend-color-input-2" type="color" value="#7ba94d" class="legend-color-input">
+                    </div>
+                    <div class="legend-item">
+                        <button class="legend-color" id="legend-color">Gevonden</button>
+                        <input id="legend-color-input-3" type="color" value="#9d6ca7" class="legend-color-input">
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <button id="new-game-button" class="new-game-button">Nieuw Spel</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
