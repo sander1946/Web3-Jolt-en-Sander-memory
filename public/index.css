@@ -6,7 +6,6 @@
     --items-background-color: #d6fffe;
     --card-img-background-color: #0000002f;
     --card-img-closed-background-img: url(card-closed.png);
-    --grid-size: 3;
 }
 
 body {
@@ -15,7 +14,7 @@ body {
         "header sidebar"
         "game-board sidebar"
     ;
-    grid-template-columns: 60vw 40vw;
+    grid-template-columns: 90vw;
     grid-gap: 10px;
     max-width: 98vw;
 
@@ -48,7 +47,7 @@ body {
 .game-board:has(.card) {
     grid-area: game-board;
     display: grid;
-    grid-template-columns: repeat(var(--grid-size), 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     width: 100%;
     background-color:var(--items-background-color);
@@ -113,49 +112,131 @@ body {
     margin: 0px;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 300px) {
     body {
         grid-template-areas: 
             "header"
             "game-board"
             "sidebar"
         ;
-        grid-template-columns: 1fr;
+        grid-template-columns: 95vw;
     }
 
-    .game-board {
-        grid-template-columns: repeat(var(--grid-size), 1fr);
+    .game-board:has(.card) {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 90vw;
     }
 }
 
-@media (min-width: 450px) and (max-width: 750px) {
+@media (min-width: 300px) and (max-width: 400px) {
     body {
         grid-template-areas: 
             "header"
             "game-board"
             "sidebar"
         ;
-        grid-template-columns: 60vw;
+        grid-template-columns: 95vw;
+    }
+
+    .game-board:has(.card) {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 90vw;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 500px) {
+    body {
+        grid-template-areas: 
+            "header"
+            "game-board"
+            "sidebar"
+        ;
+        grid-template-columns: 95vw;
+    }
+
+    .game-board:has(.card) {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 90vw;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 750px) {
+    body {
+        grid-template-areas: 
+            "header"
+            "game-board"
+            "sidebar"
+        ;
+        grid-template-columns: 95vw;
         justify-content: center;
     }
 
-    .game-board {
-        grid-template-columns: repeat(var(--grid-size), 1fr);
+    .game-board:has(.card) {
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 90vw;
     }
 }
 
-@media (min-width: 750px) {
+@media (min-width: 750px) and (max-width: 1000px) {
     body {
         grid-template-areas: 
             "header header"
             "game-board sidebar"
         ;
-        grid-template-columns: 50vw 50vw;
+        grid-template-columns: calc(95vw - 380px) 360px;
         grid-template-rows: min-content;
         justify-content: center;
     }
 
-    .game-board {
-        grid-template-columns: repeat(var(--grid-size), 1fr);
+    .game-board:has(.card) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+    body {
+        grid-template-areas: 
+            "header header"
+            "game-board sidebar"
+        ;
+        grid-template-columns: calc(95vw - 380px) 360px;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+
+    .game-board:has(.card) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+    body {
+        grid-template-areas: 
+            "header header"
+            "game-board sidebar"
+        ;
+        grid-template-columns: calc(95vw - 380px) 360px;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+
+    .game-board:has(.card) {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (min-width: 1500px) {
+    body {
+        grid-template-areas: 
+            "header header"
+            "game-board sidebar"
+        ;
+        grid-template-columns: 1120px 360px;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+
+    .game-board:has(.card) {
+        grid-template-columns: repeat(7, 1fr);
     }
 }

@@ -2,8 +2,7 @@ async function updateBoardSize(inputSelector) {
     const board = document.querySelector('#game-board');
     board.innerHTML = ''; // Clear the board before updating
 
-    const catJson = await getCatImages(inputSelector.value, 0, 'cute');
-    console.log(catJson); // TODO: remove this line in production
+    const catJson = await getCatImages(inputSelector.value, 0, 'cute,funny');
 
     if (!catJson || catJson.length === 0) {
         console.error('No cat images found');
@@ -16,24 +15,18 @@ async function updateBoardSize(inputSelector) {
         cards_unshuffled.push(catJson[i].id); // Duplicate each image ID for the matching game
     }
 
-    console.log(cards_unshuffled); // TODO: remove this line in production
-
-    // Shuffle the cards array to randomize the order of images
-    // cards.sort(() => Math.random() - 0.1); // TODO: find better random sort algorithm
-
     cards = cards_unshuffled
     .map(value => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value)
 
-    console.log(cards); // TODO: remove this line in production
-
     cards.forEach(function (cardId, index) {
-        const imgUrl = `https://cataas.com/cat/${cardId}`;
+        const imgUrl = `https://cataas.com/cat/${cardId}?width=500&height=500`;
 
         const card = document.createElement('div');
         card.classList.add('card');
         card.setAttribute('data-card-id', cardId);
+        card.setAttribute('data-card-index', index);
         card.setAttribute('data-card-status', 'closed');
         card.setAttribute('imgurl', imgUrl);
 
