@@ -1,4 +1,6 @@
+let selected_card = null;
 async function updateBoardSize(inputSelector) {
+    selected_card = null;
     const board = document.querySelector('#game-board');
     board.innerHTML = ''; // Clear the board before updating
 
@@ -47,10 +49,43 @@ async function updateBoardSize(inputSelector) {
                 card.setAttribute('data-card-status', 'open');
                 cardImg.setAttribute('style', `display: block; background-image: url('${imgUrl}');`);
                 cardImgBackground.setAttribute('style', `background-color: var(--card-img-background-color);`);
+
+                if (selected_card === null) {
+                    selected_card = card;
+                } else {
+                    const selectedCardId = selected_card.getAttribute('data-card-id');
+                    const currentCardId = card.getAttribute('data-card-id');
+                    console.log('selectedCardId', selectedCardId);
+                    console.log('currentCardId', currentCardId);
+                    if (selectedCardId === currentCardId) {
+                        setTimeout(() => {
+                            selected_card.setAttribute('data-card-status', 'found');
+
+                            card.setAttribute('data-card-status', 'found');
+                            selected_card = null;
+                        }, 500);
+                    } else {
+                        setTimeout(() => {
+                            selected_card.setAttribute('data-card-status', 'closed');
+                            const selected_card_img_background = selected_card.querySelector('.card-image');
+                            selected_card_img_background.setAttribute('style', `background-image: var(--card-img-closed-background-img);`);
+                            const selected_card_img = selected_card_img_background.querySelector('.card-image');
+                            selected_card_img.setAttribute('style', `display: none; background-image: url('${selected_card.getAttribute('imgurl')}');`);
+
+                            card.setAttribute('data-card-status', 'closed');
+                            cardImg.setAttribute('style', `display: none; background-image: url('${imgUrl}');`);
+                            cardImgBackground.setAttribute('style', `background-image: var(--card-img-closed-background-img);`);
+                            selected_card = null;
+                        }, 750);
+                    }
+                }
             } else {
-                card.setAttribute('data-card-status', 'closed');
-                cardImg.setAttribute('style', `display: none; background-image: url('${imgUrl}');`);
-                cardImgBackground.setAttribute('style', `background-image: var(--card-img-closed-background-img);`);
+                // If the card is already open, do nothing
+
+                // TODO: remove old test code
+                // card.setAttribute('data-card-status', 'closed');
+                // cardImg.setAttribute('style', `display: none; background-image: url('${imgUrl}');`);
+                // cardImgBackground.setAttribute('style', `background-image: var(--card-img-closed-background-img);`);
             }
         });
         board.appendChild(card);
