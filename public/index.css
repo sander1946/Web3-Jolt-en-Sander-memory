@@ -46,6 +46,7 @@ body {
     margin: 0;
     text-align: center;
     aspect-ratio: 1/1;
+    border-radius: 13px;
 }
 
 .game-board .card .card-text {
