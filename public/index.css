@@ -4,6 +4,8 @@
     --card-found-color: #722c80;
     --card-text-color: white;
     --items-background-color: #d6fffe;
+    --card-img-background-color: #0000002f;
+    --card-img-closed-background-img: url(card-closed.png);
     --grid-size: 3;
 }
 
@@ -35,7 +37,15 @@ body {
     justify-content: center;
 }
 
-.game-board {
+.game-board:not(:has(.card)) {
+    grid-area: game-board;
+    width: 100%;
+    background-color:var(--items-background-color);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.game-board:has(.card) {
     grid-area: game-board;
     display: grid;
     grid-template-columns: repeat(var(--grid-size), 1fr);
@@ -59,6 +69,15 @@ body {
     margin: auto;
     font-size: 20px;
     color: var(--card-text-color);
+}
+
+.game-board .card .card-image {
+    height: 100%;
+    width: 100%;
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: 10px;
 }
 
 .game-board .card[data-card-status="closed"] {
