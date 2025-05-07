@@ -92,12 +92,8 @@
                             <option value=" "> </option>
                         </select>
                     </h2>
-                    <h2 class="board-size">Afmeting bord:
-                        <select name="board-size-select" id="board-size-select">
-                            <option value="4">4</option>
-                            <option value="6" selected>6</option>
-                            <option value="8">8</option>
-                        </select>
+                    <h2 class="board-size">Aantal paren:
+                        <input name="board-size-input" id="board-size-input" onchange="updateBoardSize(this)">"
                     </h2>
                 </div>
             </div>
@@ -123,6 +119,6 @@
             </div>
         </div>
     </div>
-
+    <script src="index.js"></script>
 </body>
 </html>
