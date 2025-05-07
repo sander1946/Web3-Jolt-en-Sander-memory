@@ -1,3 +1,12 @@
+:root {
+    --card-closed-color: #8ff357;
+    --card-open-color: #438400;
+    --card-found-color: #722c80;
+    --card-text-color: white;
+    --items-background-color: #d6fffe;
+    --grid-size: 3;
+}
+
 body {
     display: grid;
     grid-template-areas: 
@@ -29,18 +38,12 @@ body {
 .game-board {
     grid-area: game-board;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(var(--grid-size), 1fr);
     gap: 10px;
     width: 100%;
-    background-color:#d6fffe;
+    background-color:var(--items-background-color);
     padding: 10px;
     border-radius: 10px;
-}
-
-.game-board .row {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
 }
 
 .game-board .card {
@@ -55,23 +58,26 @@ body {
 .game-board .card .card-text {
     margin: auto;
     font-size: 20px;
-    color: white;
+    color: var(--card-text-color);
 }
 
-.game-board .closed{
-    background-color: #8ff357;
+.game-board .card[data-card-status="closed"] {
+    background-color: var(--card-closed-color);
+    cursor: pointer;
 }
 
-.game-board .open{
-    background-color: #438400;
+.game-board .card[data-card-status="open"] {
+    background-color: var(--card-open-color);
+    cursor: default;
 }
 
-.game-board .found{
-    background-color: #722c80;
+.game-board .card[data-card-status="found"] {
+    background-color: var(--card-found-color);
+    cursor: default;
 }
 
 .top-vijf{
-    background-color: #d6fffe;
+    background-color: var(--items-background-color);
     padding-top: 5px;
     padding-left: 10px;
     padding-right: 10px;
@@ -98,8 +104,8 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .game-board .row {
-        grid-template-columns: repeat(6, 1fr);
+    .game-board {
+        grid-template-columns: repeat(var(--grid-size), 1fr);
     }
 }
 
@@ -114,8 +120,8 @@ body {
         justify-content: center;
     }
 
-    .game-board .row {
-        grid-template-columns: repeat(6, 1fr);
+    .game-board {
+        grid-template-columns: repeat(var(--grid-size), 1fr);
     }
 }
 
@@ -130,7 +136,7 @@ body {
         justify-content: center;
     }
 
-    .game-board .row {
-        grid-template-columns: repeat(6, 1fr);
+    .game-board {
+        grid-template-columns: repeat(var(--grid-size), 1fr);
     }
 }
