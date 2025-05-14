@@ -36,7 +36,8 @@ body {
     justify-content: center;
 }
 
-.game-board:not(:has(.card)) {
+/* Board */
+.game-board:not(:has(.card-container)) {
     grid-area: game-board;
     width: 100%;
     background-color:var(--items-background-color);
@@ -44,7 +45,7 @@ body {
     border-radius: 10px;
 }
 
-.game-board:has(.card) {
+.game-board:has(.card-container) {
     grid-area: game-board;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -55,43 +56,65 @@ body {
     border-radius: 10px;
 }
 
-.game-board .card {
-    display: flex;
-    padding: 10px;
-    margin: 0;
+/* Cards */
+.game-board .card-container {
+    background-color: transparent;
+}
+
+.game-board .card-container .card-inner {
+    position: relative;
+    width: 100%;
     text-align: center;
     aspect-ratio: 1/1;
     border-radius: 10px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
 }
 
-.game-board .card .card-text {
-    margin: auto;
+.game-board .card-container .card-front {
     font-size: 20px;
     color: var(--card-text-color);
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
-.game-board .card .card-image {
-    height: 100%;
-    width: 100%;
+.game-board .card-container .card-back {
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     border-radius: 10px;
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 7%;
+    left: 7%;
+    width: 86%;
+    height: 86%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
-.game-board .card[data-card-status="closed"] {
+.game-board .card-container[data-card-status="closed"] .card-inner {
     background-color: var(--card-closed-color);
     cursor: pointer;
+    transform: rotateY(0deg);
 }
 
-.game-board .card[data-card-status="open"] {
+.game-board .card-container[data-card-status="open"] .card-inner {
     background-color: var(--card-open-color);
     cursor: default;
+    transform: rotateY(180deg);
 }
 
-.game-board .card[data-card-status="found"] {
+.game-board .card-container[data-card-status="found"] .card-inner {
     background-color: var(--card-found-color);
     cursor: default;
+    transform: rotateY(180deg);
 }
 
 .top-vijf{
@@ -122,7 +145,7 @@ body {
         grid-template-columns: 95vw;
     }
 
-    .game-board:has(.card) {
+    .game-board:has(.card-container) {
         grid-template-columns: repeat(2, 1fr);
         max-width: 90vw;
     }
@@ -138,7 +161,7 @@ body {
         grid-template-columns: 95vw;
     }
 
-    .game-board:has(.card) {
+    .game-board:has(.card-container) {
         grid-template-columns: repeat(3, 1fr);
         max-width: 90vw;
     }
@@ -154,7 +177,7 @@ body {
         grid-template-columns: 95vw;
     }
 
-    .game-board:has(.card) {
+    .game-board:has(.card-container) {
         grid-template-columns: repeat(4, 1fr);
         max-width: 90vw;
     }
@@ -171,7 +194,7 @@ body {
         justify-content: center;
     }
 
-    .game-board:has(.card) {
+    .game-board:has(.card-container) {
         grid-template-columns: repeat(5, 1fr);
         max-width: 90vw;
     }
@@ -188,7 +211,7 @@ body {
         justify-content: center;
     }
 
-    .game-board:has(.card) {
+    .game-board:has(.card-container) {
         grid-template-columns: repeat(4, 1fr);
     }
 }
@@ -204,7 +227,7 @@ body {
         justify-content: center;
     }
 
-    .game-board:has(.card) {
+    .game-board:has(.card-container) {
         grid-template-columns: repeat(5, 1fr);
     }
 }
@@ -220,7 +243,7 @@ body {
         justify-content: center;
     }
 
-    .game-board:has(.card) {
+    .game-board:has(.card-container) {
         grid-template-columns: repeat(6, 1fr);
     }
 }
@@ -236,7 +259,7 @@ body {
         justify-content: center;
     }
 
-    .game-board:has(.card) {
+    .game-board:has(.card-container) {
         grid-template-columns: repeat(7, 1fr);
     }
 }

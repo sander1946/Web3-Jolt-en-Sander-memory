@@ -25,70 +25,59 @@ async function updateBoardSize(inputSelector) {
     cards.forEach(function (cardId, index) {
         const imgUrl = `https://cataas.com/cat/${cardId}?width=500&height=500`;
 
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.setAttribute('data-card-id', cardId);
-        card.setAttribute('data-card-index', index);
-        card.setAttribute('data-card-status', 'closed');
-        card.setAttribute('imgurl', imgUrl);
+        const cardContainer = document.createElement('div');
+        cardContainer.classList.add('card-container');
+        cardContainer.setAttribute('data-card-id', cardId);
+        cardContainer.setAttribute('data-card-index', index);
+        cardContainer.setAttribute('data-card-status', 'closed');
+        cardContainer.setAttribute('imgurl', imgUrl);
 
-        const cardImgBackground = document.createElement('div');
-        cardImgBackground.setAttribute('style', `background-image: var(--card-img-closed-background-img);`);
-        cardImgBackground.classList.add('card-image');
+        const cardInner = document.createElement('div');
+        cardInner.classList.add('card-inner');
 
-        const cardImg = document.createElement('div');
-        cardImg.setAttribute('style', `display: none; background-image: url('${imgUrl}');`);
-        cardImg.classList.add('card-image');
+        const cardFront = document.createElement('div');
+        cardFront.classList.add('card-front');
+        cardFront.classList.add('card-image');
+        cardFront.setAttribute('style', `background-image: var(--card-img-closed-background-img);`);
 
-        cardImgBackground.appendChild(cardImg);
-        card.appendChild(cardImgBackground);
-        card.addEventListener('click', function() {
-            const cardStatus = card.getAttribute('data-card-status');
-            const imgUrl = card.getAttribute('imgurl');
+        const cardBack = document.createElement('div');
+        cardBack.classList.add('card-back');
+        cardBack.classList.add('card-image');
+        cardBack.setAttribute('style', `background-image: url('${imgUrl}');`);
+
+        cardContainer.appendChild(cardInner);
+        cardInner.appendChild(cardFront);
+        cardInner.appendChild(cardBack);
+        
+        cardContainer.addEventListener('click', function() {
+            const cardStatus = cardContainer.getAttribute('data-card-status');
             if (cardStatus === 'closed') {
-                card.setAttribute('data-card-status', 'open');
-                cardImg.setAttribute('style', `display: block; background-image: url('${imgUrl}');`);
-                cardImgBackground.setAttribute('style', `background-color: var(--card-img-background-color);`);
+                cardContainer.setAttribute('data-card-status', 'open');
 
                 if (selected_card === null) {
-                    selected_card = card;
+                    selected_card = cardContainer;
                 } else {
                     const selectedCardId = selected_card.getAttribute('data-card-id');
-                    const currentCardId = card.getAttribute('data-card-id');
-                    console.log('selectedCardId', selectedCardId);
-                    console.log('currentCardId', currentCardId);
+                    const currentCardId = cardContainer.getAttribute('data-card-id');
                     if (selectedCardId === currentCardId) {
                         setTimeout(() => {
                             selected_card.setAttribute('data-card-status', 'found');
-
-                            card.setAttribute('data-card-status', 'found');
+                            cardContainer.setAttribute('data-card-status', 'found');
                             selected_card = null;
                         }, 500);
                     } else {
                         setTimeout(() => {
                             selected_card.setAttribute('data-card-status', 'closed');
-                            const selected_card_img_background = selected_card.querySelector('.card-image');
-                            selected_card_img_background.setAttribute('style', `background-image: var(--card-img-closed-background-img);`);
-                            const selected_card_img = selected_card_img_background.querySelector('.card-image');
-                            selected_card_img.setAttribute('style', `display: none; background-image: url('${selected_card.getAttribute('imgurl')}');`);
-
-                            card.setAttribute('data-card-status', 'closed');
-                            cardImg.setAttribute('style', `display: none; background-image: url('${imgUrl}');`);
-                            cardImgBackground.setAttribute('style', `background-image: var(--card-img-closed-background-img);`);
+                            cardContainer.setAttribute('data-card-status', 'closed');
                             selected_card = null;
                         }, 750);
                     }
                 }
             } else {
                 // If the card is already open, do nothing
-
-                // TODO: remove old test code
-                // card.setAttribute('data-card-status', 'closed');
-                // cardImg.setAttribute('style', `display: none; background-image: url('${imgUrl}');`);
-                // cardImgBackground.setAttribute('style', `background-image: var(--card-img-closed-background-img);`);
             }
         });
-        board.appendChild(card);
+        board.appendChild(cardContainer);
     });
 }
 
