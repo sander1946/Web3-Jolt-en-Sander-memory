@@ -1,10 +1,19 @@
 let selected_card = null;
 async function updateBoardSize(inputSelector) {
+    // preparing variables
     selected_card = null;
     const board = document.querySelector('#game-board');
-    board.innerHTML = ''; // Clear the board before updating
 
-    const catJson = await getCatImages(inputSelector.value, 0, 'cute,funny');
+    // setting input to one if it's lower then one
+    if(inputSelector.value<=1) {
+        inputSelector.value = 1;
+    }
+
+    board.innerHTML = ''; // Clear the board before updating
+    const catJson = await getCatImages(inputSelector.value, 0);
+    // const catJson = await getCatImages(inputSelector.value, 0, 'cute,funny');
+
+
 
     if (!catJson || catJson.length === 0) {
         console.error('No cat images found');
