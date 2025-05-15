@@ -90,6 +90,10 @@ async function updateBoardSize(inputSelector) {
     });
 }
 
+const fake_input = document.createElement('input');
+fake_input.value = 8;
+window.onload = updateBoardSize(fake_input);
+
 async function getCatImages(limit, skip, tags) {
     if (!limit) return Promise.reject('Limit is required');
     const skipParam = skip ? `&skip=${skip}`: ``;
