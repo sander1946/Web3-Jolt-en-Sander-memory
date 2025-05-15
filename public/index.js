@@ -1,6 +1,7 @@
 let selected_card = null;
 async function updateBoardSize(inputSelector) {
     // preparing variables
+    let foundcards = 0;
     selected_card = null;
     const board = document.querySelector('#game-board');
 
@@ -74,6 +75,7 @@ async function updateBoardSize(inputSelector) {
                             cardContainer.setAttribute('data-card-status', 'found');
                             selected_card = null;
                         }, 500);
+                        foundcards++;
                     } else {
                         setTimeout(() => {
                             selected_card.setAttribute('data-card-status', 'closed');
@@ -86,8 +88,24 @@ async function updateBoardSize(inputSelector) {
                 // If the card is already open, do nothing
             }
         });
+
         board.appendChild(cardContainer);
     });
+
+    const game_container = document.querySelector('#game-container');
+    // const game_container = document.querySelector('#top-vijf');
+
+
+    // game_container.innerHTML+= `
+    // <p class="pairs">Gevonden kaart-paren: 
+    // <span id="pairs-count">${foundcards}</span>.
+    // </p>
+    // `;
+    // game_container.insertAdjacentHTML("beforeend", `
+    // <p class="pairs">Gevonden kaart-paren: 
+    // <span id="pairs-count">${foundcards}</span>.
+    // </p>
+    // `);
 }
 
 async function getCatImages(limit, skip, tags) {

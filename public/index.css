@@ -20,20 +20,33 @@ body {
 
 }
 
-.header-wrapper {
+/* TODO Improve: */
+/* .header-wrapper {
     grid-area: header;
     display: flex;
     justify-content: center;
-}
+    background-color: #d6fffe
+} */
 
 .header {
-    text-align: center; 
+    text-align: center;
+    background-color: #d6fffe
+}
+
+.header h1 {
+    background-color: #d6fffe
 }
 
 .sidebar-wrapper {
     grid-area: sidebar;
     display: flex;
     justify-content: center;
+}
+
+
+.game-container {
+    background-color: var(--items-background-color);
+    border-radius: 10px;
 }
 
 /* Board */
