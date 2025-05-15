@@ -10,10 +10,7 @@ async function updateBoardSize(inputSelector) {
     }
 
     board.innerHTML = ''; // Clear the board before updating
-    const catJson = await getCatImages(inputSelector.value, 0);
-    // const catJson = await getCatImages(inputSelector.value, 0, 'cute,funny');
-
-
+    const catJson = await getCatImages(inputSelector.value);
 
     if (!catJson || catJson.length === 0) {
         console.error('No cat images found');
@@ -27,9 +24,9 @@ async function updateBoardSize(inputSelector) {
     }
 
     cards = cards_unshuffled
-    .map(value => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value)
 
     cards.forEach(function (cardId, index) {
         const imgUrl = `https://cataas.com/cat/${cardId}?width=500&height=500`;
@@ -54,39 +51,42 @@ async function updateBoardSize(inputSelector) {
         cardBack.classList.add('card-image');
         cardBack.setAttribute('style', `background-image: url('${imgUrl}');`);
 
+        board.appendChild(cardContainer);
         cardContainer.appendChild(cardInner);
         cardInner.appendChild(cardFront);
         cardInner.appendChild(cardBack);
-        
+
         cardContainer.addEventListener('click', function() {
             const cardStatus = cardContainer.getAttribute('data-card-status');
-            if (cardStatus === 'closed') {
-                cardContainer.setAttribute('data-card-status', 'open');
+            if (cardStatus !== 'closed') {
+                // If the card is already open or found, do nothing
+                return;
+            }
 
-                if (selected_card === null) {
-                    selected_card = cardContainer;
-                } else {
-                    const selectedCardId = selected_card.getAttribute('data-card-id');
-                    const currentCardId = cardContainer.getAttribute('data-card-id');
-                    if (selectedCardId === currentCardId) {
-                        setTimeout(() => {
-                            selected_card.setAttribute('data-card-status', 'found');
-                            cardContainer.setAttribute('data-card-status', 'found');
-                            selected_card = null;
-                        }, 500);
-                    } else {
-                        setTimeout(() => {
-                            selected_card.setAttribute('data-card-status', 'closed');
-                            cardContainer.setAttribute('data-card-status', 'closed');
-                            selected_card = null;
-                        }, 750);
-                    }
-                }
+            cardContainer.setAttribute('data-card-status', 'open');
+
+            if (selected_card === null) {
+                // If no card is selected, set the current card as selected
+                selected_card = cardContainer;
+                return;
+            }
+
+            const selectedCardId = selected_card.getAttribute('data-card-id');
+            const currentCardId = cardContainer.getAttribute('data-card-id');
+            if (selectedCardId === currentCardId) {
+                setTimeout(() => {
+                    selected_card.setAttribute('data-card-status', 'found');
+                    cardContainer.setAttribute('data-card-status', 'found');
+                    selected_card = null;
+                }, 500);
             } else {
-                // If the card is already open, do nothing
+                setTimeout(() => {
+                    selected_card.setAttribute('data-card-status', 'closed');
+                    cardContainer.setAttribute('data-card-status', 'closed');
+                    selected_card = null;
+                }, 750);
             }
         });
-        board.appendChild(cardContainer);
     });
 }
 
@@ -104,6 +104,7 @@ async function getCatImages(limit, skip, tags) {
         const response = await fetch(url);
         return await response.json();
     } catch (error) {
-        return console.error('Error fetching cat images:', error);
+        console.error('Error fetching cat images:', error);
+        return Promise.reject('Error fetching cat images:', error);
     }
 }
