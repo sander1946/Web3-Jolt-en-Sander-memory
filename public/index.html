@@ -57,14 +57,8 @@
                     <h2 class="avg-time">Gemiddelde speeltijd: 
                         <span class="">0s (64s)</span>
                     </h2>
-                    <h2 class="display-char">Karakter op kaarten:
-                        <select name="display-char-select" id="display-char-select">
-                            <option value="*" selected>*</option>
-                            <option value=" "> </option>
-                        </select>
-                    </h2>
                     <h2 class="board-size">Aantal paren:
-                        <input name="board-size-input" id="board-size-input" type="number" min="1" onchange="updateBoardSize(this)" value="8">
+                        <input name="board-size-input" id="board-size-input" type="number" min="1" value="8">
                     </h2>
                 </div>
             </div>
@@ -83,7 +77,15 @@
                         <label for="legend-color-input-found" class="legend-color" id="legend-color">Gevonden kaarten</label>
                         <input id="legend-color-input-found" type="color" value="#9d6ca7" class="legend-color-input" data-card-status="found" onchange="updateCardColor(this)">
                     </div>
-                    
+                    <h2>Kaart afbeeldingen</h2>
+                    <div class="legend-item">
+                        <select id="provider-select">
+                            <option value="cataas">Katten</option>
+                            <option value="dogapi">Honden</option>
+                            <option value="lorempicsum">Willekeurige</option>
+                        </select>
+                        <label for="provider-select" class="legend-color">Afbeeldingen</label>
+                    </div>
                 </div>
             </div>
             <div class="sidebar-footer">
