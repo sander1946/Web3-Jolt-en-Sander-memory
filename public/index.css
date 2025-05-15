@@ -1,10 +1,12 @@
 :root {
+    --header-color: #d6fffe;
     --card-closed-color: #8ff357;
     --card-open-color: #438400;
     --card-found-color: #722c80;
     --card-text-color: white;
     --items-background-color: #d6fffe;
     --card-img-background-color: #0000002f;
+    --counter-background-color: #fa9200;
     --card-img-closed-background-img: url(card-closed.png);
 }
 
@@ -28,12 +30,19 @@ body {
 
 .header {
     text-align: center; 
+    background-color: var(--header-color);
 }
 
 .sidebar-wrapper {
     grid-area: sidebar;
     display: flex;
     justify-content: center;
+}
+
+.game-container {
+    background-color: var(--items-background-color);
+    padding: 10px;
+    border-radius: 15px;
 }
 
 /* Board */
@@ -115,6 +124,10 @@ body {
     background-color: var(--card-found-color);
     cursor: default;
     transform: rotateY(180deg);
+}
+
+.pairs {
+    background-color: var(--counter-img-background-color);
 }
 
 .top-vijf{
