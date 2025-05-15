@@ -26,11 +26,12 @@ body {
     grid-area: header;
     display: flex;
     justify-content: center;
+    background-color: var(--header-color);
+
 }
 
 .header {
     text-align: center; 
-    background-color: var(--header-color);
 }
 
 .sidebar-wrapper {
