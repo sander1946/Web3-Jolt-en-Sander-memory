@@ -16,6 +16,8 @@ var score_timer = null; // this is an interval
 var open_cards = [] // this is an array that contains intervals of the open cards
 var card_containers = []; // this is an array that contains the cards, these are the final shuffeld cards that will be shown on the board
 
+var open_cards = []; // this is an array that contains the open cards, these are the cards that are currently open
+
 export function getSelectedCard() {
     return selected_card;
 }
@@ -41,12 +43,12 @@ export function startGame() {
     score_time  = 0;
     pares_found = 0;
     score_timer = updateScoreTimer();
-    look_timer = updateLeftTimer();
+    // look_timer = updateLookTimer();
 }
 
 export function stopGame() {
     started = false;
-    clearInterval(look_timer);
+    stopLookTimer(look_timer);
     clearInterval(score_timer);
 }
 
@@ -56,6 +58,7 @@ export function foundPair() {
     const pairs_counter = document.querySelector('#pairs-count');
     pairs_counter.innerText = `${pares_found}`;
     if (pares_found >= card_containers.length / 2) {
+        // TODO: show a better message/popup
         stopGame();
         console.log('You found all pairs!');
         alert('You found all pairs! Your score is: ' + score);
@@ -94,11 +97,16 @@ export function updateScoreTimer() {
     }, 1000);
 }
 
-export function updateLeftTimer() {
+export function stopLookTimer(interval) {
+    clearInterval(interval);
     var progress = document.querySelector('#time-left-progress');
-    let time = 0; // the elapsed time in seconds
-    let start_time = view_time-2; // the start time in seconds, its lower to make the progress bar look better
+}
+
+export function updateLookTimer() {
+    var progress = document.querySelector('#time-left-progress');
     progress.setAttribute("style", `width: 100%`); // set the progress bar to 100%
+    let time = 1; // the elapsed time in seconds
+    let start_time = view_time-1; // the start time in seconds, its lower to make the progress bar look better
     let value = start_time; // the current vabarlue of the progress 
     
     return setInterval(() => {
@@ -123,28 +131,70 @@ export function cardClickEventHandler(event) {
         return;
     }
 
-    cardContainer.setAttribute('data-card-status', 'open');
-
     if (selected_card === null) {
+        if (open_cards.length > 0) {
+            closeOpenCards();
+            // setTimeout(() => {
+            //     cardContainer.setAttribute('data-card-status', 'open');
+            // }, 200);
+        }
         // If no card is selected, set the current card as selected
+        cardContainer.setAttribute('data-card-status', 'open');
         selected_card = cardContainer;
+        open_cards.push(selected_card);
         return;
     }
+
+    cardContainer.setAttribute('data-card-status', 'open');
 
     const selectedCardId = selected_card.getAttribute('data-card-imgurl');
     const currentCardId = cardContainer.getAttribute('data-card-imgurl');
     if (selectedCardId === currentCardId) {
         setTimeout(() => {
-            selected_card.setAttribute('data-card-status', 'found');
-            cardContainer.setAttribute('data-card-status', 'found');
-            foundPair();
+            open_cards.push(cardContainer);
+            closeOpenCards(true);
             selected_card = null;
         }, 500);
+        foundPair();
     } else {
-        setTimeout(() => {
-            selected_card.setAttribute('data-card-status', 'closed');
-            cardContainer.setAttribute('data-card-status', 'closed');
-            selected_card = null;
-        }, 750);
+        // selected_card.setAttribute('data-card-status', 'closed');
+        // cardContainer.setAttribute('data-card-status', 'closed');
+        open_cards.push(cardContainer);
+        look_timer = updateLookTimer();
+        selected_card = null;
     }
+}
+
+function closeOpenCards(found = false) {
+    stopLookTimer(look_timer);
+    if (found) {
+        open_cards.forEach(function (card) {
+            card.setAttribute('data-card-status', 'found');
+        });
+    } else {
+        open_cards.forEach(function (card) {
+            card.setAttribute('data-card-status', 'closed');
+        });
+    }
+    open_cards = [];
+}
+
+function removeItemOnce(arr, value) {
+    var index = arr.indexOf(value);
+    if (index > -1) {
+        arr.splice(index, 1);
+    }
+    return arr;
+}
+
+function removeItemAll(arr, value) {
+    var i = 0;
+    while (i < arr.length) {
+        if (arr[i] === value) {
+        arr.splice(i, 1);
+        } else {
+        ++i;
+        }
+    }
+    return arr;
 }

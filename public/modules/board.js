@@ -18,6 +18,8 @@ export async function createMemoryCards(urls) {
         .sort((a, b) => a.sort - b.sort)
         .map(({ value }) => value)
 
+    setCardContainers([]); // Reset the card containers array
+
     cards.forEach(function (url, index) {
         const cardContainer = document.createElement('div');
         cardContainer.classList.add('card-container');
