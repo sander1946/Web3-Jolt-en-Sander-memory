@@ -3,15 +3,15 @@ var view_time = 30; // this is the time in seconds, this will be the max time to
 
 // score variables, these are used to calculate/show the score
 var score = 0; // this is the score
-var past_time  = 0; // this is the time in seconds that has passed
-var left_time = 0; // this is the time in seconds that is left when viewing a card
+var score_time  = 0; // this is the time in seconds that has passed
+var look_time = 0; // this is the time in seconds that is left when viewing a card
 var pares_found = 0; // this is the number of pairs found
 
 // game variables, these are used to control the game
 var started = false; // this is a boolean that tells if the game has started
 var selected_card = null; // this is an div element
-var left_timer = null; // this is an interval
-var past_timer = null; // this is an interval
+var look_timer = null; // this is an interval
+var score_timer = null; // this is an interval
 
 var open_cards = [] // this is an array that contains intervals of the open cards
 var card_containers = []; // this is an array that contains the cards, these are the final shuffeld cards that will be shown on the board
@@ -37,17 +37,17 @@ export function startGame() {
     selected_card = null;
     open_cards = [];
     score = 0;
-    left_time = 0;
-    past_time  = 0;
+    look_time = 0;
+    score_time  = 0;
     pares_found = 0;
-    past_timer = updatePastTimer();
-    left_timer = updateLeftTimer();
+    score_timer = updateScoreTimer();
+    look_timer = updateLeftTimer();
 }
 
 export function stopGame() {
     started = false;
-    clearInterval(left_timer);
-    clearInterval(past_timer);
+    clearInterval(look_timer);
+    clearInterval(score_timer);
 }
 
 export function foundPair() {
@@ -62,7 +62,7 @@ export function foundPair() {
     }
 }
 
-export function updatePastTimer() {
+export function updateScoreTimer() {
     const timerElement = document.querySelector('#time-past-time');
     let seconds = 0;
     let minutes = 0;
@@ -71,7 +71,7 @@ export function updatePastTimer() {
     timerElement.innerText = `0 seconden`;
     return setInterval(() => {
         time++;
-        past_time = time;
+        score_time = time;
         seconds = time % 60;
         minutes = Math.floor(time / 60) % 60;
         hours = Math.floor(time / 3600);
