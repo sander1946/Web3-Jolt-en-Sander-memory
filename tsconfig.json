@@ -33,7 +33,7 @@
   },
   "include": [
     "public/**/*.ts"
-, "public/index.js"  ],
+  ],
   "exclude": [
     "public/dist",
     "node_modules"
