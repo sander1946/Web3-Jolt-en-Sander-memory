@@ -1,5 +1,6 @@
 /// <reference lib="dom" />
-enum Status {
+
+export enum Status {
     closed = "closed",
     open = "open",
     found = "found",
@@ -103,5 +104,28 @@ export class Card {
             return false;
         }
         return this.pairedCard === card;
+    }
+
+    open(): void {
+        this.setStatus(Status.open);
+    }
+
+    close(): void {
+        new Promise((resolve) => {
+            setTimeout(() => {
+                this.setStatus(Status.closed);
+                resolve(true);
+            }, 1000);
+        });
+    }
+
+    found(): void {
+        this.setStatus(Status.found);
+
+        if (this.pairedCard) {
+            this.pairedCard.setStatus(Status.found);
+        } else {
+            console.error("No paired card found");
+        }
     }
 }

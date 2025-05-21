@@ -1,33 +1,48 @@
-import { cardClickEventHandler, setSelectedCard, getCardContainers, setCardContainers } from './game.js';
 import { Card } from './card.js';
 
-export async function createMemoryCards(urls: string[]): Promise<void> {
-    setSelectedCard(null);
-    const board = document.querySelector('#game-board') as HTMLElement;
-    board.innerHTML = '';
+export class Board {
+    element: HTMLElement;
+    cards: Card[];
 
-    const cards_unshuffled: string[] = [];
-    for (let i = 0; i < urls.length; i++) {
-        const url = urls[i];
-        if (typeof url === 'string' && url !== undefined) {
-            cards_unshuffled.push(url);
-            cards_unshuffled.push(url);
+    constructor(boardElement: HTMLElement) {
+        this.element = boardElement;
+        this.cards = [];
+    }
+
+    addCard(card: Card): void {
+        this.cards.push(card);
+        this.element.appendChild(card.element);
+    }
+
+    addCards(cards: Card[]): void {
+        cards.forEach(card => {
+            this.cards.push(card);
+            this.element.appendChild(card.element);
+        });
+    }
+
+    removeCard(card: Card): void {
+        const index = this.cards.indexOf(card);
+        if (index > -1) {
+            this.cards.splice(index, 1);
+            card.remove();
         }
     }
 
-    const cards: string[] = cards_unshuffled
-        .map(value => ({ value, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value);
+    getCards(): Card[] {
+        return this.cards;
+    }
 
-    setCardContainers([]);
+    getCardByIndex(index: string): Card | null {
+        return this.cards.find(card => card.index === index) || null;
+    }
 
-    cards.forEach(function (url: string, index: number) {
-        const card = new Card(url, index.toString());
-        card.addEventListener('click', cardClickEventHandler);
-        card.addEventListener('mouseover', function () {
-            card.element.classList.add('card-hover');
-        });
-        board.appendChild(card.element);
-    });
+    getCardByImageUrl(url: string): Card | null {
+        return this.cards.find(card => card.imageUrl === url) || null;
+    }
+
+    clear(): void {
+        this.cards.forEach(card => card.remove());
+        this.cards = [];
+    }
 }
