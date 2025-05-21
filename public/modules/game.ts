@@ -8,6 +8,7 @@ export class Game {
     started: boolean = false;
     view_timer: NodeJS.Timeout | null = null;
     elapsed_timer: NodeJS.Timeout | null = null;
+    open_cards: Card[] = [];
 
     // score variables
     score: number = 0;
@@ -15,7 +16,7 @@ export class Game {
     elapsed_time: number = 0;
 
     // config variables
-    view_time: number = 30; // this is the time in seconds, this will be the max time to view the cards
+    public static view_time: number = 5; // this is the time in seconds, this will be the max time to view the cards
 
     public static selected_card: Card | null = null;
 
@@ -45,6 +46,10 @@ export class Game {
         this.setupGame(numberOfPares);
         this.started = false;
         Game.selected_card = null;
+        this.open_cards = [];
+        this.stopElapsedTimer();
+        this.resetViewTimer();
+        const pairs_counter: HTMLElement | null = document.querySelector('#pairs-count');
 
         // reset the score and the timer
         this.score = 0;
@@ -54,17 +59,18 @@ export class Game {
 
     startGame(): void {
         this.started = true;
-        this.elapsed_timer = this.startElapsedTimer();
-        // this.view_timer = startViewTimer();
+        this.startElapsedTimer();
     }
 
     stopGame(): void {
         this.started = false;
-        this.stopElapsedTimer(this.elapsed_timer);
-        this.stopViewTimer(this.view_timer);
+        this.stopElapsedTimer();
+        this.stopViewTimer();
+        Game.selected_card = null;
+        this.open_cards = [];
     }
 
-    startElapsedTimer(): NodeJS.Timeout {
+    startElapsedTimer(): void {
         const timerElement: HTMLElement | null = document.querySelector('#time-past-time');
         let seconds: number | string = 0;
         let minutes: number | string = 0;
@@ -72,10 +78,10 @@ export class Game {
         this.elapsed_time = 0;
         if (timerElement === null) {
             console.error('Timer element not found');
-            return setInterval(() => { }, 1000);
+            return;
         }
         timerElement.innerText = `0 seconden`;
-        return setInterval(() => {
+        this.elapsed_timer = setInterval(() => {
             this.elapsed_time++;
             seconds = this.elapsed_time % 60;
             minutes = Math.floor(this.elapsed_time / 60) % 60;
@@ -99,38 +105,53 @@ export class Game {
         }, 1000);
     }
 
-    startViewTimer(): NodeJS.Timeout {
+    startViewTimer(): void {
         var progress: HTMLElement | null = document.querySelector('#time-left-progress');
         if (progress === null) {
             console.error('Progress element not found');
-            return setInterval(() => { }, 1000);
+            return;
         }
         progress.setAttribute("style", `width: 100%`); // set the progress bar to 100%
-        this.elapsed_time = 1; // the elapsed time in seconds
-        let start_time: number = this.view_time - 1; // the start time in seconds, its lower to make the progress bar look better
+        let time = 0.1; // the elapsed time in seconds
+        let start_time: number = Game.view_time - 0.1; // the start time in seconds, its lower to make the progress bar look better
         let value: number = start_time; // the current vabarlue of the progress 
 
-        return setInterval(() => {
-            value = 100 - (this.elapsed_time / start_time) * 100; // the value of the progress bar
-            this.elapsed_time++;
-            if (value >= 0 && value <= 100) {
-                if (progress !== null) {
-                    progress.setAttribute('style', `width: ${value}%`);
-                }
+        this.view_timer = setInterval(() => {
+            value = 100 - (time / (start_time * 9)) * 100; // the value of the progress bar
+            time++;
+            if (value <= 0) {
+                value = 0;
+            } else if (value >= 100) {
+                value = 100;
             }
-        }, 1000);
+            if (progress !== null) {
+                progress.setAttribute('style', `width: ${value}%`);
+            }
+        }, 100);
     }
 
-    stopElapsedTimer(interval: NodeJS.Timeout | null): void {
-        if (interval !== null) {
-            clearInterval(interval);
+    stopElapsedTimer(): void {
+        if (this.elapsed_timer !== null) {
+            clearInterval(this.elapsed_timer);
+            this.elapsed_timer = null;
         }
     }
 
-    stopViewTimer(interval: NodeJS.Timeout | null): void {
-        if (interval !== null) {
-            clearInterval(interval);
+    stopViewTimer(): void {
+        if (this.view_timer !== null) {
+            clearInterval(this.view_timer);
+            this.view_timer = null;
         }
+    }
+
+    resetViewTimer(): void {
+        this.stopViewTimer();
+        var progress: HTMLElement | null = document.querySelector('#time-left-progress');
+        if (progress === null) {
+            console.error('Progress element not found');
+            return;
+        }
+        progress.setAttribute("style", `width: 100%`); // set the progress bar to 100%
     }
 
     // This function is used to create the memory cards, it will load the images from the provider and create the memory cards
@@ -187,17 +208,27 @@ export class Game {
             return;
         }
 
+        if (this.open_cards.length >= 2) {
+            // if there are two cards open, close them
+            for (const open_card of this.open_cards) {
+                open_card.triggerCloseNow();
+            }
+            this.open_cards = []; // reset the open cards
+            this.stopViewTimer();
+        }
+
         // if no card is selected, set the current card as selected
         if (Game.selected_card === null) {
             // If no card is selected, set the current card as selected
             card.open();
             Game.selected_card = card;
-            // this.open_cards.push(card);
+            this.open_cards.push(card);
             return;
         }
 
         // if a card is selected, check if its the paired card
         card.open();
+        this.open_cards.push(card);
 
         // if the selected card is the pair of the current card, set both cards as found
         if (card.isLinked(Game.selected_card)) {
@@ -206,6 +237,7 @@ export class Game {
         }
 
         // if the selected card is not the pair of the current card, close both cards
+        this.startViewTimer();
         card.close();
         Game.selected_card.close();
         Game.selected_card = null; // reset the selected card
@@ -214,6 +246,9 @@ export class Game {
     foundCard(card: Card): void {
         card.found(); // found handles itself and the paired card
         Game.selected_card = null; // reset the selected card
+        this.open_cards = []; // reset the open cards
+        this.stopViewTimer();
+
         this.pares_found++;
         this.score += 10;
         const pairs_counter: HTMLElement | null = document.querySelector('#pairs-count');
@@ -226,7 +261,16 @@ export class Game {
             // TODO: show a better message/popup
             this.stopGame();
             console.log('You found all pairs!');
-            alert('You found all pairs! Your score is: ' + this.score);
+            // Get the modal
+            var popup = document.getElementById("popup");
+            popup!.style.display = "block";
+            var popup_content =  document.querySelector('.popup-content') as HTMLElement;
+            popup_content.innerHTML = `
+            <h2>Game Over</h2>
+            <p>You found all pairs!</p>
+            <p>Your score is: ${this.score}</p>
+            <p>Your time is: ${this.elapsed_time} seconds</p>`;
+
         }
     }
 }

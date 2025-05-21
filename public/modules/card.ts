@@ -1,9 +1,11 @@
 /// <reference lib="dom" />
 
+import { Game } from "./game.js";
+
 export enum Status {
-    closed = "closed",
-    open = "open",
-    found = "found",
+    Closed = "closed",
+    Open = "open",
+    Found = "found",
 }
 
 export class Card {
@@ -11,7 +13,9 @@ export class Card {
     imageUrl: string;
     index: string;
     pairedCard: Card | null = null;
-    status: Status = Status.closed;
+    status: Status = Status.Closed;
+    private closeTimeoutId: ReturnType<typeof setTimeout> | null = null;
+    private closeResolve: (() => void) | null = null;
 
     constructor(imageUrl: string, index: string) {
         this.imageUrl = imageUrl;
@@ -107,23 +111,55 @@ export class Card {
     }
 
     open(): void {
-        this.setStatus(Status.open);
+        this.setStatus(Status.Open);
     }
 
     close(): void {
-        new Promise((resolve) => {
-            setTimeout(() => {
-                this.setStatus(Status.closed);
-                resolve(true);
-            }, 1000);
+        // If a previous timeout exists, clear it and resolve immediately
+        if (this.closeTimeoutId) {
+            clearTimeout(this.closeTimeoutId);
+            this.closeTimeoutId = null;
+        }
+        // If a previous resolve exists, resolve it
+        if (this.closeResolve) {
+            this.closeResolve();
+            this.closeResolve = null;
+        }
+
+        new Promise<void>((resolve) => {
+            this.closeResolve = () => {
+                this.setStatus(Status.Closed);
+                resolve();
+                this.closeTimeoutId = null;
+                this.closeResolve = null;
+            };
+            this.closeTimeoutId = setTimeout(() => {
+                if (this.closeResolve) {
+                    this.closeResolve();
+                }
+            }, Game.view_time * 1000);
         });
     }
 
+    /**
+     * Manually trigger the close action before the timeout expires.
+     */
+    triggerCloseNow(): void {
+        if (this.closeTimeoutId) {
+            clearTimeout(this.closeTimeoutId);
+            this.closeTimeoutId = null;
+        }
+        if (this.closeResolve) {
+            this.closeResolve();
+            this.closeResolve = null;
+        }
+    }
+
     found(): void {
-        this.setStatus(Status.found);
+        this.setStatus(Status.Found);
 
         if (this.pairedCard) {
-            this.pairedCard.setStatus(Status.found);
+            this.pairedCard.setStatus(Status.Found);
         } else {
             console.error("No paired card found");
         }

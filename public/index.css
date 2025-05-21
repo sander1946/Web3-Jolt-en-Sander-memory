@@ -234,8 +234,8 @@ span.progress {
     top: 0;
     bottom: 0;
     background: #326666;
-    transition: all 1s linear;
-    width: 0; /* this is the stating width */
+    transition: all 0.1s linear;
+    width: 100%; /* this is the stating width */
 }
 
 /* The Modal (background) */
