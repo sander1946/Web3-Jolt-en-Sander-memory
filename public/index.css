@@ -10,7 +10,7 @@
     --card-img-closed-background-img: url(card-closed.png);
 }
 
-body {
+.page-content {
     display: grid;
     grid-template-areas: 
         "header sidebar"
@@ -238,8 +238,54 @@ span.progress {
     width: 0; /* this is the stating width */
 }
 
+/* The Modal (background) */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Header */
+.popup-header {
+    margin: auto;
+    width: 80%;
+    padding: 20px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Modal Content */
+.popup-content {
+    margin: auto;
+    text-align: center;
+}
+
 @media (max-width: 300px) {
-    body {
+    .page-content {
         grid-template-areas: 
             "header"
             "game-board"
@@ -255,7 +301,7 @@ span.progress {
 }
 
 @media (min-width: 300px) and (max-width: 400px) {
-    body {
+    .page-content {
         grid-template-areas: 
             "header"
             "game-board"
@@ -271,7 +317,7 @@ span.progress {
 }
 
 @media (min-width: 400px) and (max-width: 500px) {
-    body {
+    .page-content {
         grid-template-areas: 
             "header"
             "game-board"
@@ -287,7 +333,7 @@ span.progress {
 }
 
 @media (min-width: 500px) and (max-width: 750px) {
-    body {
+    .page-content {
         grid-template-areas: 
             "header"
             "game-board"
@@ -304,7 +350,7 @@ span.progress {
 }
 
 @media (min-width: 750px) and (max-width: 1000px) {
-    body {
+    .page-content {
         grid-template-areas: 
             "header header"
             "game-board sidebar"
@@ -320,7 +366,7 @@ span.progress {
 }
 
 @media (min-width: 1000px) and (max-width: 1200px) {
-    body {
+    .page-content {
         grid-template-areas: 
             "header header"
             "game-board sidebar"
@@ -336,7 +382,7 @@ span.progress {
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
-    body {
+    .page-content {
         grid-template-areas: 
             "header header"
             "game-board sidebar"
@@ -352,7 +398,7 @@ span.progress {
 }
 
 @media (min-width: 1500px) {
-    body {
+    .page-content {
         grid-template-areas: 
             "header header"
             "game-board sidebar"
