@@ -133,22 +133,88 @@ body {
     background-color: var(--counter-img-background-color);
 }
 
-.top-vijf{
+.sidebar h1 {
+    margin-top:0px;
+    margin-bottom: 8px;
+}
+
+.sidebar h2 {
+    margin-top:0px;
+    margin-bottom: 8px;
+}
+
+.sidebar ol {
+    margin: 0px;
+}
+
+.sidebar button {
+    width: 100%;
+}
+
+.sidebar hr {
+    max-width: 95%;
+}
+
+.sidebar .legend-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar .legend-item label {
+    text-align: left;
+    flex: 1; /* Optional: makes label take up left space */
+}
+
+.sidebar input[type="color" i] {
+    flex-shrink: 0; /* Prevents the input from shrinking */
+    margin: 0 auto;
+    border-radius: 25px;
+    inline-size: 50px;
+    block-size: 25px;
+    
+    /* Can set padding between outer circle and color swatch for Firefox here;
+    * it doesn't support a color-swarch-wrapper pseudoclass
+    */
+    padding: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(153, 153, 153);
+}
+
+/* Affects area between outer circle and color swatch. Firefox doesn't have an equivalent. */
+.sidebar input[type="color" i]::-webkit-color-swatch-wrapper {
+    padding: 1px;
+}
+
+/* Affects the inner circle, i.e. the current color selection */
+.sidebar input[type="color" i]::-webkit-color-swatch {
+    border-radius: 25px;
+}
+
+.sidebar input[type="color" i]::-moz-color-swatch {
+    border-radius: 25px;
+}
+
+
+.leaderboard {
     background-color: var(--items-background-color);
     padding-top: 5px;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 5px;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.top-vijf h2{
-    margin-top:0px;
-    margin-bottom: 8px;
-}
-
-.top-vijf ol{
-    margin: 0px;
+.legend {
+    background-color: var(--items-background-color);
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .progressbar {

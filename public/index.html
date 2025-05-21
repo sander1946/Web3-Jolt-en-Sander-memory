@@ -56,13 +56,15 @@
                     <h2 class="avg-time">Gemiddelde speeltijd: 
                         <span class="">0s (64s)</span>
                     </h2>
-                    <h2 class="board-size">Aantal paren:
-                        <input name="board-size-input" id="board-size-input" type="number" min="1" value="8">
-                    </h2>
                 </div>
             </div>
             <div class="sidebar-content">
                 <div class="legend">
+                    <h1 class="board-settings">Instellingen</h1>
+                    <h2 class="board-size">Aantal paren:
+                        <input name="board-size-input" id="board-size-input" type="number" min="1" value="8">
+                    </h2>
+                    <hr>
                     <h2>Kaart Kleuren</h2>
                     <div class="legend-item">
                         <label for="legend-color-input-closed" class="legend-color" id="legend-color">Gesloten kaarten</label>
@@ -76,6 +78,7 @@
                         <label for="legend-color-input-found" class="legend-color" id="legend-color">Gevonden kaarten</label>
                         <input id="legend-color-input-found" type="color" value="#9d6ca7" class="legend-color-input" data-card-status="found" onchange="updateCardColor(this)">
                     </div>
+                    <hr>
                     <h2>Kaart afbeeldingen</h2>
                     <div class="legend-item">
                         <select id="provider-select">
@@ -85,10 +88,11 @@
                         </select>
                         <label for="provider-select" class="legend-color">Afbeeldingen</label>
                     </div>
+                    <hr>
+                    <div class="sidebar-footer">
+                        <button id="new-game-button" class="new-game-button">Nieuw Spel</button>
+                    </div>
                 </div>
-            </div>
-            <div class="sidebar-footer">
-                <button id="new-game-button" class="new-game-button">Nieuw Spel</button>
             </div>
         </div>
     </div>
