@@ -1,4 +1,4 @@
-export async function getImages(limit) {
+export async function getImages(limit: number): Promise<any[]> {
     if (!limit) return Promise.reject('Limit is required');
     // the way it is set up, the limit api limit is not relevant
     // if (limit > 30) {
@@ -14,10 +14,10 @@ export async function getImages(limit) {
         return json;
     } catch (error) {
         console.error('Error fetching Lorem Picsum images:', error);
-        return Promise.reject('Error fetching Lorem Picsum images:', error);
+        return Promise.reject('Error fetching Lorem Picsum images:' + error);
     }
 }
 
-export function getImageUrl(imageData) {
+export function getImageUrl(imageData: any): string {
     return imageData; // return the image URL directly
 }

@@ -3,15 +3,18 @@ import * as dogapi from './dogapi.js';
 import * as lorempicsum from './lorempicsum.js';
 
 
-const providers = {
+export type ProviderName = 'cataas' | 'dogapi' | 'lorempicsum';
+
+const providers: Record<ProviderName, any> = {
     cataas,
     dogapi,
     lorempicsum
 };
 
-let currentProvider = 'cataas';
+let currentProvider: ProviderName = 'cataas';
 
-export function setProvider(name) {
+export function setProvider(name: ProviderName) {
+    if (name === currentProvider) return; // No change
     if (!providers[name]) throw new Error(`Provider ${name} not found`);
     currentProvider = name;
 }
