@@ -1,0 +1,33 @@
+{
+  "name": "web3-jolt-en-sander-memory",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.15.29"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "memory": "file:"
+  },
+  "description": "To install bun and typescript:",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sander1946/Web3-Jolt-en-Sander-memory.git"
+  },
+  "keywords": [],
+  "author": "Sander1946 and Zamorak538",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sander1946/Web3-Jolt-en-Sander-memory/issues"
+  },
+  "homepage": "https://github.com/sander1946/Web3-Jolt-en-Sander-memory#readme"
+}

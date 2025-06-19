@@ -1,0 +1,32 @@
+services:
+  backend:
+    container_name: memory-backend
+    build: 
+      dockerfile: Dockerfile
+      context: ./memory-backend
+    volumes:
+      - webdata:/usr/src/memory-backend/var
+    ports:
+      - 8000:8000
+  frontend:
+    container_name: memory-frontend
+    build: 
+      dockerfile: Dockerfile
+      context: ./memory-frontend
+    ports: 
+      - '8080:8080'
+  admin: 
+    container_name: memory-admin
+    build: 
+      dockerfile: Dockerfile
+      context: ./memory-admin
+    ports: 
+      - '4200:4200'
+
+volumes:
+  webdata:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./memory-backend/var
+      o: bind

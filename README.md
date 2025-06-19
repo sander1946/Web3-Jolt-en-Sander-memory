@@ -1,22 +1,23 @@
 # memory
 
-To install bun and typescript:
+Om dit projecte te kunnen draaien, is docker en docker compose nodig
+
+Alle servers kun je starten met de volgende commando
 
 ```bash
-npm install -g bun
-npm install -g typescript
+docker compose up --build -d
 ```
 
-To install dependencies:
+Om de specifieke server te runnen, kun je de volgende commando's draaien
 
 ```bash
-bun install
+docker compose up frontend --build -d
+docker compose up backend --build -d
+docker compose up admin- -build -d
 ```
 
-This project was created using `bun init` in bun v1.2.13. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## Het is nodig om de backend appart te pullen als je deze wilt draaien, dit kan door de volgende commando te runnen
 
-Build ts files to js files, this is required everytime a change is made to any `.ts` file.
-
-```sh
-tsc
+```bash
+git submodule update
 ```
