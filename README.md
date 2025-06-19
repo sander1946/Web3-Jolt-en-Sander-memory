@@ -20,4 +20,5 @@ docker compose up admin- -build -d
 
 ```bash
 git submodule update
+git submodule update --init --recursive # alternative
 ```
