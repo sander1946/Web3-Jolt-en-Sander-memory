@@ -2,9 +2,9 @@ FROM node:22.12-alpine
 
 EXPOSE 4200
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY . /usr/src/app
+COPY ./ /app/
 
 RUN npm install -g @angular/cli
 

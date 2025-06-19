@@ -19,5 +19,5 @@ docker compose up admin- -build -d
 ## Het is nodig om de backend appart te pullen als je deze wilt draaien, dit kan door de volgende commando te runnen
 
 ```bash
-git submodule update
+git submodule update --init
 ```

@@ -3,7 +3,7 @@ services:
     container_name: memory-backend
     build: 
       dockerfile: Dockerfile
-      context: ./memory-backend
+      context: /memory-backend
     volumes:
       - webdata:/usr/src/memory-backend/var
     ports:
@@ -12,16 +12,20 @@ services:
     container_name: memory-frontend
     build: 
       dockerfile: Dockerfile
-      context: ./memory-frontend
+      context: /memory-frontend
+    volumes:
+      - ./memory-frontend:/app
     ports: 
-      - '8080:8080'
+      - 8080:8080
   admin: 
     container_name: memory-admin
     build: 
       dockerfile: Dockerfile
-      context: ./memory-admin
+      context: /memory-admin
+    volumes:
+      - ./memory-admin:/app
     ports: 
-      - '4200:4200'
+      - 4200:4200
 
 volumes:
   webdata:
