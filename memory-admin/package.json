@@ -1,5 +1,5 @@
 {
-  "name": "memory",
+  "name": "memory-admin",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
