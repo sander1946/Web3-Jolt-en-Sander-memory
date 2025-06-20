@@ -326,6 +326,39 @@ span.progress {
     .time-past{
         margin-left:0px;
     }
+
+    .header-wrapper {
+        justify-content: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .header-wrapper h1 {
+        margin-bottom: 0px;
+    }
+
+    .header-wrapper a {
+        margin: 0px;
+    }
+
+    .header-wrapper h2 {
+        font-size: 1.5em; /* TODO maybe change discuss with San */
+        margin: 0px;
+    }
+
+    .home{
+        order: 2;
+    }
+
+    .header{
+        order: 1;
+    }
+
+    .login{
+        order: 3;
+    }
 }
 
 @media (min-width: 300px) and (max-width: 400px) {
@@ -349,6 +382,39 @@ span.progress {
 
     .time-past{
         margin-left:0px;
+    }
+
+    .header-wrapper {
+        justify-content: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .header-wrapper h1 {
+        margin-bottom: 0px;
+    }
+
+    .header-wrapper a {
+        margin: 0px;
+    }
+
+    .header-wrapper h2 {
+        font-size: 1.5em; /* TODO maybe change discuss with San */
+        margin: 0px;
+    }
+
+    .home{
+        order: 2;
+    }
+
+    .header{
+        order: 1;
+    }
+
+    .login{
+        order: 3;
     }
 }
 
@@ -374,9 +440,100 @@ span.progress {
     .time-past{
         margin-left:0px;
     }
+
+    .header-wrapper {
+        justify-content: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .header-wrapper h1 {
+        margin-bottom: 0px;
+    }
+
+    .header-wrapper a {
+        margin: 0px;
+    }
+
+    .header-wrapper h2 {
+        font-size: 1.5em; /* TODO maybe change discuss with San */
+        margin: 0px;
+    }
+
+    .home{
+        order: 2;
+    }
+
+    .header{
+        order: 1;
+    }
+
+    .login{
+        order: 3;
+    }
 }
 
-@media (min-width: 500px) and (max-width: 750px) {
+@media (min-width: 500px) and (max-width: 630px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "game-board"
+            "sidebar"
+        ;
+        grid-template-columns: 95vw;
+        justify-content: center;
+    }
+
+    .game-board:has(.card-container) {
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 90vw;
+    }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
+    }
+
+    .header-wrapper {
+        justify-content: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .header-wrapper h1 {
+        margin-bottom: 0px;
+    }
+
+    .header-wrapper a {
+        margin: 0px;
+    }
+
+    .header-wrapper h2 {
+        font-size: 1.5em; /* TODO maybe change discuss with San */
+        margin: 0px;
+    }
+
+    .home{
+        order: 2;
+    }
+
+    .header{
+        order: 1;
+    }
+
+    .login{
+        order: 3;
+    }
+}
+
+@media (min-width: 630px) and (max-width: 750px) {
     .page-content {
         grid-template-areas: 
             "header"
