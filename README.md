@@ -2,10 +2,20 @@
 
 Om dit projecte te kunnen draaien, is docker en docker compose nodig
 
-Alle servers kun je starten met de volgende commando
+<!-- TODO: bug -->
+Om deze service op te starten run de volgende commando's in de gegeven volgorde:
 
 ```bash
+cd memory-frontend
+npm install
+tsc
+cd ..
+
 docker compose up --build -d
+
+cd memory-admin
+npm install
+ng serve
 ```
 
 Om de specifieke server te runnen, kun je de volgende commando's draaien

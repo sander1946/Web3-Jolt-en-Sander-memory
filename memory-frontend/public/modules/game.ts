@@ -1,6 +1,8 @@
-import { Card, Status } from './card.js';
+import { Card } from './card.js';
 import { Board } from './board.js';
-import { getImageUrls } from './main.js';
+import { getImageUrls } from './memory.js';
+import { API } from './api.js';
+import { showPopup } from './main.js';
 
 export class Game {
     // game variables
@@ -49,7 +51,6 @@ export class Game {
         this.open_cards = [];
         this.stopElapsedTimer();
         this.resetViewTimer();
-        const pairs_counter: HTMLElement | null = document.querySelector('#pairs-count');
 
         // reset the score and the timer
         this.score = 0;
@@ -71,7 +72,7 @@ export class Game {
     }
 
     startElapsedTimer(): void {
-        const timerElement: HTMLElement | null = document.querySelector('#time-past-time');
+        let timerElement: HTMLElement | null = document.querySelector('#time-past-time');
         let seconds: number | string = 0;
         let minutes: number | string = 0;
         let hours: number | string = 0;
@@ -159,23 +160,23 @@ export class Game {
     createMemoryCards(urls: string[]): void {
         this.board.clear();
 
-        const cards_unshuffled: string[] = [];
+        let cards_unshuffled: string[] = [];
         for (let i = 0; i < urls.length; i++) {
-            const url = urls[i];
+            let url = urls[i];
             if (typeof url === 'string' && url !== undefined) {
                 cards_unshuffled.push(url);
                 cards_unshuffled.push(url);
             }
         }
 
-        const cards: string[] = cards_unshuffled
+        let cards: string[] = cards_unshuffled
             .map(value => ({ value, sort: Math.random() }))
             .sort((a, b) => a.sort - b.sort)
             .map(({ value }) => value);
 
         cards.forEach( (url: string, index: number) => {
             // create the card
-            const card = new Card(url, index.toString());
+            let card = new Card(url, index.toString());
             card.addEventListener('click', () => {
                 this.cardClickEventHandler(card);
             });
@@ -184,7 +185,7 @@ export class Game {
             }); 
 
             // pair the card with its pair
-            const pairedCard = this.board.getCardByImageUrl(url);
+            let pairedCard = this.board.getCardByImageUrl(url);
             if (pairedCard !== null) {
                 card.setPairedCard(pairedCard);
                 pairedCard.setPairedCard(card);
@@ -210,7 +211,7 @@ export class Game {
 
         if (this.open_cards.length >= 2) {
             // if there are two cards open, close them
-            for (const open_card of this.open_cards) {
+            for (let open_card of this.open_cards) {
                 open_card.triggerCloseNow();
             }
             this.open_cards = []; // reset the open cards
@@ -250,8 +251,8 @@ export class Game {
         this.stopViewTimer();
 
         this.pares_found++;
-        this.score += 10;
-        const pairs_counter: HTMLElement | null = document.querySelector('#pairs-count');
+        this.score = this.elapsed_time; // set the score to the elapsed time //TODO: implement/find a better scoring system
+        let pairs_counter: HTMLElement | null = document.querySelector('#pairs-count');
         if (pairs_counter === null) {
             console.error('Pairs counter element not found');
             return;
@@ -262,15 +263,36 @@ export class Game {
             this.stopGame();
             console.log('You found all pairs!');
             // Get the modal
-            var popup = document.getElementById("popup");
-            popup!.style.display = "block";
-            var popup_content =  document.querySelector('.popup-content') as HTMLElement;
-            popup_content.innerHTML = `
-            <h2>Game Over</h2>
-            <p>You found all pairs!</p>
-            <p>Your score is: ${this.score}</p>
-            <p>Your time is: ${this.elapsed_time} seconds</p>`;
+            showPopup(`<h2>Game Over</h2>
+                <p>You found all pairs!</p>
+                <p>Your score is: ${this.score}</p>
+                <p>Your time is: ${this.elapsed_time} seconds</p>
+                <button id="save-score-button">Save Score</button>
+            `);
 
+            // Add event listener to the save score button
+            document.getElementById('save-score-button')!.addEventListener('click', async () => {
+                let api = new API();
+                let player = await api.playerGetPlayerData();
+                let preferences = await api.playerGetPreferences();
+                if (player !== null) {
+                    if (preferences === null) {
+                        preferences = { 
+                            preferred_api: '', 
+                            color_closed: '', 
+                            color_found: ''
+                        }; // default provider if no preferences are set
+                    }
+                    await api.publicSaveGame({
+                        id: player.id,
+                        score: this.score,
+                        api: preferences.preferred_api,
+                        color_closed: preferences.color_closed,
+                        color_found: preferences.color_found,
+                    });
+                    window.location.reload(); // reload the page to reset the game and show the new score
+                }
+            });
         }
     }
 }

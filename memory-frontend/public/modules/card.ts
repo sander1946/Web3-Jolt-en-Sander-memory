@@ -24,21 +24,21 @@ export class Card {
     }
 
     createCardElement(): HTMLElement {
-        const element = document.createElement('div');
+        let element = document.createElement('div');
         element.classList.add('card-container');
         element.setAttribute('data-card-index', this.index);
         element.setAttribute('data-card-status', this.status);
         element.setAttribute('data-card-imgurl', this.imageUrl);
 
-        const cardInner = document.createElement('div');
+        let cardInner = document.createElement('div');
         cardInner.classList.add('card-inner');
 
-        const cardFront = document.createElement('div');
+        let cardFront = document.createElement('div');
         cardFront.classList.add('card-front');
         cardFront.classList.add('card-image');
         cardFront.setAttribute('style', `background-image: var(--card-img-closed-background-img);`);
 
-        const cardBack = document.createElement('div');
+        let cardBack = document.createElement('div');
         cardBack.classList.add('card-back');
         cardBack.classList.add('card-image');
         cardBack.setAttribute('style', `background-image: url('${this.imageUrl}');`);

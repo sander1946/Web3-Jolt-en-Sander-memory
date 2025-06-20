@@ -4,43 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play | Memory</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/static/index.css">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
 </head>
 <body>
     <div class="page-content">
         <!-- Information header, On the top of the page -->
         <div class="header-wrapper">
+            <a href="/" class="home">
+                <div class="link-box">
+                    <h2>Home</h2>
+                </div>
+            </a>
             <div class="header">
                 <h1>Javascript Memory</h1>
             </div>
+            <a href="/login" class="login">
+                <div class="link-box">
+                    <h2>Login</h2>
+                </div>
+            </a>
         </div> 
-
-        <!-- 6x6 Game board, in the middle left of the page -->
+        <!-- Game board, in the middle left of the page -->
         <div class="game-container">
             <div class="progressbar">
                 <span class="progress" id="time-left-progress"></span>
             </div>
-            <!-- TODO: uncomment this message -->
             <div class="game-board" id="game-board">
                 <h2>
                     Kies het gewenste hoeveelheid paren
                 </h2>
             </div>
-                <ul class="game-information">
-                    <li>
-                        <h2 class="pairs">
-                            Gevonden kaart-paren: 
-                            <span id="pairs-count">0</span>
-                        </h2> 
-                    </li>
-                    <li>
-                        <h2 class="time-past">Verlopen tijd: 
-                            <span id="time-past-time">0 seconden</span>.
-                        </h2>
-                    </li>
-                </ul>
-
-
+            <ul class="game-information">
+                <li>
+                    <h2 class="pairs">
+                        Gevonden kaart-paren: 
+                        <span id="pairs-count">0</span>
+                    </h2> 
+                </li>
+                <li>
+                    <h2 class="time-past">Verlopen tijd: 
+                        <span id="time-past-time">0 seconden</span>.
+                    </h2>
+                </li>
+            </ul>
         </div>
 
         <!-- sidebar, at the right of the page -->
@@ -50,12 +57,8 @@
                     <div class="leaderboard">
                         <div class="top-vijf">
                             <h2 class="leaderboard-name">Top vijf</h2>
-                            <ol type="1">
-                                <li><span class="leaderboard-item" id="leaderboard-item-1">Barack Obama</span> : <span class="leaderboard-score" id="leaderboard-score-1">200</span></li>
-                                <li><span class="leaderboard-item" id="leaderboard-item-2">Bernie Sanders</span> : <span class="leaderboard-score" id="leaderboard-score-1">300</span></li>
-                                <li><span class="leaderboard-item" id="leaderboard-item-3">Hillary Clinton</span> : <span class="leaderboard-score" id="leaderboard-score-1">400</span></li>
-                                <li><span class="leaderboard-item" id="leaderboard-item-4">Donald Trump</span> : <span class="leaderboard-score" id="leaderboard-score-1">500</span></li>
-                                <li><span class="leaderboard-item" id="leaderboard-item-5">Jeb Bush</span> : <span class="leaderboard-score" id="leaderboard-score-1">600</span></li>
+                            <ol type="1" class="leaderboard-list">
+                                <!-- This will be filled by the js-->
                             </ol>
                         </div>
                         <h2 class="avg-time">Gemiddelde speeltijd: 
@@ -65,36 +68,8 @@
                 </div>
                 <div class="sidebar-content">
                     <div class="legend">
-                        <h1 class="board-settings">Instellingen</h1>
-                        <h2 class="board-size">Aantal paren:
-                            <input name="board-size-input" id="board-size-input" type="number" min="1" value="8">
-                        </h2>
-                        <hr>
-                        <h2>Kaart Kleuren</h2>
-                        <div class="legend-item">
-                            <label for="legend-color-input-closed" class="legend-color" id="legend-color">Gesloten kaarten</label>
-                            <input id="legend-color-input-closed" type="color" value="#acf789" class="legend-color-input" data-card-status="closed">
-                        </div>
-                        <div class="legend-item">
-                            <label for="legend-color-input-open" class="legend-color" id="legend-color">Open kaarten</label>
-                            <input id="legend-color-input-open" type="color" value="#7ba94d" class="legend-color-input" data-card-status="open">
-                        </div>
-                        <div class="legend-item">
-                            <label for="legend-color-input-found" class="legend-color" id="legend-color">Gevonden kaarten</label>
-                            <input id="legend-color-input-found" type="color" value="#9d6ca7" class="legend-color-input" data-card-status="found">
-                        </div>
-                        <hr>
-                        <h2>Kaart afbeeldingen</h2>
-                        <div class="legend-item">
-                            <select id="provider-select">
-                                <option value="cataas">Katten</option>
-                                <option value="dogapi">Honden</option>
-                                <option value="lorempicsum">Willekeurige</option>
-                            </select>
-                            <label for="provider-select" class="legend-color">Afbeeldingen</label>
-                        </div>
-                        <hr>
                         <div class="sidebar-footer">
+                            <button id="new-game-button" class="new-game-button" onclick="window.location.href='/preferences'">Verander voorkeuren</button>
                             <button id="new-game-button" class="new-game-button">Nieuw Spel</button>
                         </div>
                     </div>
@@ -110,7 +85,7 @@
             </div>
         </div>
     </div>
-    <script src="/memory.js"></script>
-    <script type="module" src="/dist/modules/main.js"></script>
+    <script src="/static/index.js"></script>
+    <script type="module" src="/dist/modules/memory.js"></script>
 </body>
 </html>

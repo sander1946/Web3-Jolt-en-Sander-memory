@@ -4,9 +4,9 @@ export async function getImages(limit: number): Promise<any[]> {
         limit = 1950; // Limit to a maximum of 1950 images, this is the total number of images available
     }
 
-    const url = `https://cataas.com/api/cats?limit=${limit}`;
+    let url = `https://cataas.com/api/cats?limit=${limit}`;
     try {
-        const response = await fetch(url, {
+        let response = await fetch(url, {
             credentials: 'omit'
         });
         let json = await response.json();

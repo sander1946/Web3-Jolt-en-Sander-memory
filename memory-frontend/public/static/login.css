@@ -1,4 +1,4 @@
-@import url("/index.css");
+@import url("/static/index.css");
 
 .page-content {
     display: grid;
@@ -12,6 +12,17 @@
     max-width: 98vw;
 }
 
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-wrapper a{
+    text-decoration: none;
+    margin: 5px 25px;
+    color: black;
+}
+
 .login-container {
     background-color: var(--items-background-color);
     padding: 10px;
@@ -20,14 +31,22 @@
 
 .login-header {
     text-align: center;
+    margin-bottom: 0px;
+}
+
+.temp{
+    display: flex;
+    justify-content: space-between;
 }
 
 #error {
-    display: none;
+    min-width: 1px;
     justify-content: center;
+    color: red;
+    font-weight: bold;
 }
 
-input[type=text], input[type=password] { 
+input[type=text], input[type=password], input[type=email] { 
     width: 100%; 
     padding: 12px 20px; 
     margin: 8px 0; 
@@ -60,12 +79,12 @@ button:hover {
     padding: 16px; 
 }
 
-span.psw { 
+div.psw { 
     float: right; 
     padding-top: 0px; 
 }
 
-span.psw a { 
+div.psw a { 
     text-decoration: none;
     color: #606161;
 }
@@ -200,5 +219,41 @@ span.new-account a {
         ;
         grid-template-columns: 95vw;
         justify-content: center;
+    }
+}
+
+/* navbar */
+@media (max-width: 630px) {
+    .header-wrapper {
+        justify-content: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .header-wrapper h1 {
+        margin-bottom: 0px;
+    }
+
+    .header-wrapper a {
+        margin: 0px;
+    }
+
+    .header-wrapper h2 {
+        font-size: 1.5em; /* TODO maybe change discuss with San */
+        margin: 0px;
+    }
+
+    .home{
+        order: 2;
+    }
+
+    .header{
+        order: 1;
+    }
+
+    .login{
+        order: 3;
     }
 }

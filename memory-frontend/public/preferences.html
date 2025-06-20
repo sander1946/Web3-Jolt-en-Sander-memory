@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play | Memory</title>
+    <link rel="stylesheet" href="/static/preferences.css">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <div class="page-content">
+        <!-- Information header, On the top of the page -->
+        <div class="header-wrapper">
+            <a href="/" class="home">
+                <div class="link-box">
+                    <h2>Home</h2>
+                </div>
+            </a>
+            <div class="header">
+                <h1>Javascript Memory</h1>
+            </div>
+            <a href="/login" class="login">
+                <div class="link-box">
+                    <h2>Login</h2>
+                </div>
+            </a>
+        </div> 
+
+        <!-- sidebar, at the right of the page -->
+        <div class="sidebar-wrapper">
+            <div class="sidebar">
+                <div class="sidebar-content">
+                    <div class="legend">
+                        <h1 class="board-settings">Instellingen</h1>
+                        <h2>Kaart Kleuren</h2>
+                        <div class="legend-item">
+                            <label for="legend-color-input-closed" class="legend-color" id="legend-color">Gesloten kaarten</label>
+                            <input id="legend-color-input-closed" type="color" value="#acf789" class="legend-color-input" data-card-status="closed">
+                        </div>
+                        <div class="legend-item">
+                            <label for="legend-color-input-found" class="legend-color" id="legend-color">Gevonden kaarten</label>
+                            <input id="legend-color-input-found" type="color" value="#9d6ca7" class="legend-color-input" data-card-status="found">
+                        </div>
+                        <hr>
+                        <h2>Kaart afbeeldingen</h2>
+                        <div class="legend-item">
+                            <select id="provider-select">
+                                <option value="cataas">Katten</option>
+                                <option value="dogapi">Honden</option>
+                                <option value="lorempicsum">Willekeurige</option>
+                            </select>
+                            <label for="provider-select" class="legend-color">Afbeeldingen</label>
+                        </div>
+                        <hr>
+                        <div class="sidebar-footer">
+                            <button id="save-preferences" class="save-preferences-button">Sla voorkeuren op</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="popup" class="popup">
+        <div class="popup-header">
+            <span class="close">&times;</span>
+            <div id="popup-content" class="popup-content">
+                <!-- this will be filled by the js -->
+            </div>
+        </div>
+    </div>
+    <script src="/static/index.js"></script>
+    <script type="module" src="/dist/modules/preferences.js"></script>
+</body>
+</html>

@@ -1,47 +1,34 @@
-import { setProvider, getProvider, type ProviderName } from './providers/providerManager.js';
-import { Game } from './game.js';
-
-// global functions
-
-// step 1, select the provider, this happens automatically when someone clicks on the select element
-// this is done in the setupProviderSelector function
-function setupProviderSelector(): void {
-    const select = document.getElementById('provider-select') as HTMLSelectElement;
-    select.addEventListener('change', async () => {
-        setProvider(select.value as ProviderName);
-    });
+export function showPopup(content: string): void {
+    let popup = document.getElementById("popup");
+    popup!.style.display = "block";
+    let popup_content =  document.querySelector('.popup-content') as HTMLElement;
+    popup_content.innerHTML = content;
 }
 
-// step 2, get the images from the provider
-export async function getImageUrls(limit: number = 10): Promise<string[]> {
-    const provider = getProvider();
-    const images = await provider.getImages(limit);
-    const urls = images.map((img: any) => provider.getImageUrl(img));
-    return urls;
-}
+let headerWrapper = document.querySelector(".header-wrapper");
+let loginA: HTMLAnchorElement | null = null;
+let linkBox: HTMLElement | null = null;
+let linkBoxText: HTMLElement | null = null;
 
-// step 3, create the memory cards
-function updateBoardEventHandler(game: Game): void {
-    const board_size_input = document.querySelector('#board-size-input') as HTMLInputElement;
-    if(Number(board_size_input.value) <= 1) {
-        board_size_input.value = "1";
+if (headerWrapper) {
+    loginA = headerWrapper.querySelector("a[href='/login']");
+    if (loginA) {
+        linkBox = loginA.querySelector(".link-box");
+        if (linkBox) {
+            linkBoxText = linkBox.querySelector("h2");
+        }
     }
-    game.restartGame(Number(board_size_input.value)); // setup the game
 }
 
-// global setup
-// change all default values here as needed
-
-const game = new Game();
-
-const new_game_button = document.querySelector('#new-game-button') as HTMLButtonElement;
-new_game_button.addEventListener('click', async () => {
-    updateBoardEventHandler(game);
-});
-
-// register the event handler for the board size input and setup the game when the page loads
-window.onload = () => { 
-    setupProviderSelector(); // setup the provider selector
-    setProvider("cataas" as ProviderName); // setup the game with cataas as default
-    game.setupGame(8); // setup the game with 8 pairs of cards as default
-};
+if (localStorage.getItem('token') && loginA && linkBox && linkBoxText) {
+    loginA.href = '#';
+    loginA.onclick = () => {
+        localStorage.clear(); // Clear the token from localStorage
+        if (document.location.pathname !== '/login') {
+            document.location.href = '/login'; // Redirect to the home page after logout
+        } else {
+            document.location.reload(); // Reload the current page to reflect the logout
+        }
+    };
+    linkBoxText.textContent = 'Logout';
+}

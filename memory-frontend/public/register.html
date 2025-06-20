@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Memory</title>
+    <title>Register | Memory</title>
     <link rel="stylesheet" href="/static/login.css">
     <link rel="icon" href="/static/favicon.png" type="image/x-icon">
 </head>
@@ -33,14 +33,18 @@
                 <div class="container">
                     <label for="username"><b>Gebruikersnaam:</b></label>
                     <input type="text" placeholder="JohnDoe1" name="username" required>
+                    <label for="email"><b>Email:</b></label>
+                    <input type="email" placeholder="John@Doe.com" name="email" required>
                     <label for="password"><b>Wachtwoord:</b></label>
                     <input type="password" placeholder="**********" name="password" required>
+                    <label for="password-rep"><b>Wachtwoord herhalen:</b></label>
+                    <input type="password" placeholder="**********" name="password_rep" required>
                     <div class="temp">
                         <div id="error"></div>
                         <div class="psw"><a href="#">Wachtwoord vergeten?</a></div>
                     </div>
-                    <button type="submit" id="submit">Login</button>        
-                    <span class="new-account"><a href="/register">Nog geen account? Maak er hier een aan!</a></span>
+                    <button type="submit" id="submit">Registreer</button>        
+                    <span class="new-account"><a href="/login">Heb je al een account? Log dan hier in!</a></span>
                 </div>
             </form>
         </div>
@@ -54,6 +58,6 @@
         </div>
     </div>
     <script src="/static/index.js"></script>
-    <script src="/dist/modules/login.js" type="module"></script>
+    <script src="/dist/modules/register.js" type="module"></script>
 </body>
 </html>

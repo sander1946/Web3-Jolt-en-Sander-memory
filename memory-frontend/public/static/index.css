@@ -7,7 +7,7 @@
     --items-background-color: #d6fffe;
     --card-img-background-color: #0000002f;
     --counter-background-color: #fa9200;
-    --card-img-closed-background-img: url(card-closed.png);
+    --card-img-closed-background-img: url(/static/card-closed.png);
 }
 
 body {
@@ -28,9 +28,15 @@ body {
 .header-wrapper {
     grid-area: header;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     background-color: var(--header-color);
     border-radius: 15px;
+}
+
+.header-wrapper a{
+    text-decoration: none;
+    margin: 5px 25px;
+    color: black;
 }
 
 .header {
@@ -137,6 +143,10 @@ body {
     display: flex;
     padding: 0;
     Margin: 0;
+}
+
+.time-past {
+    margin-left: 10px;
 }
 
 .pairs {
@@ -308,6 +318,16 @@ span.progress {
         grid-template-columns: repeat(2, 1fr);
         max-width: 90vw;
     }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
+    }
+
+
 }
 
 @media (min-width: 300px) and (max-width: 400px) {
@@ -324,6 +344,16 @@ span.progress {
         grid-template-columns: repeat(3, 1fr);
         max-width: 90vw;
     }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
+    }
+
+
 }
 
 @media (min-width: 400px) and (max-width: 500px) {
@@ -340,9 +370,19 @@ span.progress {
         grid-template-columns: repeat(4, 1fr);
         max-width: 90vw;
     }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
+    }
+
+
 }
 
-@media (min-width: 500px) and (max-width: 750px) {
+@media (min-width: 500px) and (max-width: 630px) {
     .page-content {
         grid-template-areas: 
             "header"
@@ -356,6 +396,41 @@ span.progress {
     .game-board:has(.card-container) {
         grid-template-columns: repeat(5, 1fr);
         max-width: 90vw;
+    }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
+    }
+
+
+}
+
+@media (min-width: 630px) and (max-width: 750px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "game-board"
+            "sidebar"
+        ;
+        grid-template-columns: 95vw;
+        justify-content: center;
+    }
+
+    .game-board:has(.card-container) {
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 90vw;
+    }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
     }
 }
 
@@ -373,6 +448,14 @@ span.progress {
     .game-board:has(.card-container) {
         grid-template-columns: repeat(4, 1fr);
     }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
+    }
 }
 
 @media (min-width: 1000px) and (max-width: 1200px) {
@@ -388,6 +471,14 @@ span.progress {
 
     .game-board:has(.card-container) {
         grid-template-columns: repeat(5, 1fr);
+    }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
     }
 }
 
@@ -420,5 +511,41 @@ span.progress {
 
     .game-board:has(.card-container) {
         grid-template-columns: repeat(7, 1fr);
+    }
+}
+
+/* navbar */
+@media (max-width: 630px) {
+    .header-wrapper {
+        justify-content: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .header-wrapper h1 {
+        margin-bottom: 0px;
+    }
+
+    .header-wrapper a {
+        margin: 0px;
+    }
+
+    .header-wrapper h2 {
+        font-size: 1.5em; /* TODO maybe change discuss with San */
+        margin: 0px;
+    }
+
+    .home{
+        order: 2;
+    }
+
+    .header{
+        order: 1;
+    }
+
+    .login{
+        order: 3;
     }
 }

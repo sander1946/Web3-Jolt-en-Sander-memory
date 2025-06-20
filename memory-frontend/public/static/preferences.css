@@ -1,0 +1,218 @@
+@import url("/static/index.css");
+
+.page-content {
+    display: grid;
+    grid-template-areas: 
+        "header sidebar"
+        "sidebar"
+    ;
+    grid-template-columns: 90vw;
+    grid-gap: 10px;
+    max-width: 98vw;
+}
+
+.sidebar-wrapper {
+    grid-area: sidebar;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar h1 {
+    margin-top:0px;
+    margin-bottom: 8px;
+}
+
+.sidebar h2 {
+    margin-top:0px;
+    margin-bottom: 8px;
+}
+
+.sidebar ol {
+    margin: 0px;
+}
+
+.sidebar button {
+    width: 100%;
+}
+
+.sidebar hr {
+    max-width: 95%;
+}
+
+.sidebar .legend-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar .legend-item label {
+    text-align: left;
+    flex: 1; /* Optional: makes label take up left space */
+}
+
+.sidebar input[type="color" i] {
+    flex-shrink: 0; /* Prevents the input from shrinking */
+    margin: 0 auto;
+    border-radius: 25px;
+    inline-size: 50px;
+    block-size: 25px;
+    
+    /* Can set padding between outer circle and color swatch for Firefox here;
+    * it doesn't support a color-swarch-wrapper pseudoclass
+    */
+    padding: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(153, 153, 153);
+}
+
+/* Affects area between outer circle and color swatch. Firefox doesn't have an equivalent. */
+.sidebar input[type="color" i]::-webkit-color-swatch-wrapper {
+    padding: 1px;
+}
+
+/* Affects the inner circle, i.e. the current color selection */
+.sidebar input[type="color" i]::-webkit-color-swatch {
+    border-radius: 25px;
+}
+
+.sidebar input[type="color" i]::-moz-color-swatch {
+    border-radius: 25px;
+}
+
+
+.legend {
+    background-color: var(--items-background-color);
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+@media (max-width: 300px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "sidebar"
+        ;
+        grid-template-columns: 95vw;
+    }
+}
+
+@media (min-width: 300px) and (max-width: 400px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "sidebar"
+        ;
+        grid-template-columns: 95vw;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 500px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "sidebar"
+        ;
+        grid-template-columns: 95vw;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 750px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "sidebar"
+        ;
+        grid-template-columns: 95vw;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 750px) and (max-width: 1000px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            " sidebar"
+        ;
+        grid-template-columns: calc(95vw - 380px) 360px;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "sidebar"
+        ;
+        grid-template-columns: calc(95vw - 380px) 360px;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "sidebar"
+        ;
+        grid-template-columns: calc(95vw - 380px) 360px;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 1500px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "sidebar"
+        ;
+        grid-template-columns: 1120px 360px;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+}
+
+/* navbar */
+@media (max-width: 630px) {
+    .header-wrapper {
+        justify-content: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .header-wrapper h1 {
+        margin-bottom: 0px;
+    }
+
+    .header-wrapper a {
+        margin: 0px;
+    }
+
+    .header-wrapper h2 {
+        font-size: 1.5em; /* TODO maybe change discuss with San */
+        margin: 0px;
+    }
+
+    .home{
+        order: 2;
+    }
+
+    .header{
+        order: 1;
+    }
+
+    .login{
+        order: 3;
+    }
+}
