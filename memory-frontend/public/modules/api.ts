@@ -1,4 +1,5 @@
 import type { adminAggregate, adminDateMap, adminPlayer, playerData, playerGames, playerPreferences, playerScores, PlayerToken } from "./interfaces";
+import { showPopup } from "./main";
 
 export class API {
   private baseUrl: string;
@@ -7,9 +8,18 @@ export class API {
     this.baseUrl = 'http://localhost:8000'; // Adjust the base URL as needed
   }
 
-  private getAPIToken(): string | null {
+  promtToLogin() {
+    // Redirect to the login page if the user is not authenticated
+    showPopup(`
+      <h2>Login Required</h2>
+      <p>Your session has expired, Please log in again.</p>
+      <p><a href="/login">Click here to login</a></p>
+    `);
+  }
+
+  public getAPIToken(): string | null {
     // Retrieve the API token from local storage or any other secure storage
-    return localStorage.getItem('apiToken');
+    return localStorage.getItem('api_token');
   }
 
   // Overzicht van de spelers en hun gemiddelde score (ongesorteerd)
@@ -124,7 +134,12 @@ export class API {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
         },
       });
-      if (response.status === 404) {
+      if (response.status === 401) {
+        console.error('Unauthorized: Invalid token');
+        this.promtToLogin(); // Prompt the user to log in if the token is invalid
+        return null; // Return null if the user is not authenticated
+      }
+      else if (response.status === 404) {
         throw new Error('Not Found: The player with this ID does not seem to exist');
       }
       else if (!response.ok) {
@@ -146,7 +161,12 @@ export class API {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
         },
       });
-      if (response.status === 404) {
+      if (response.status === 401) {
+        console.error('Unauthorized: Invalid token');
+        this.promtToLogin(); // Prompt the user to log in if the token is invalid
+        return null; // Return null if the user is not authenticated
+      }
+      else if (response.status === 404) {
         throw new Error('Not Found: The player with this ID does not seem to exist');
       }
       else if (!response.ok) {
@@ -168,7 +188,12 @@ export class API {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
         },
       });
-      if (response.status === 404) {
+      if (response.status === 401) {
+        console.error('Unauthorized: Invalid token');
+        this.promtToLogin(); // Prompt the user to log in if the token is invalid
+        return null; // Return null if the user is not authenticated
+      }
+      else if (response.status === 404) {
         throw new Error('Not Found: The player with this ID does not seem to exist');
       }
       else if (!response.ok) {
@@ -194,6 +219,10 @@ export class API {
       if (response.status === 400) {
         throw new Error('Bad Request: Gegevens kloppen niet met het model');
       }
+      else if (response.status === 401) {
+        console.error('Unauthorized: Invalid token');
+        this.promtToLogin(); // Prompt the user to log in if the token is invalid
+      }
       else if (response.status === 404) {
         throw new Error('Not Found: The player with this ID does not seem to exist');
       }
@@ -214,7 +243,12 @@ export class API {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
         },
       });
-      if (response.status === 404) {
+      if (response.status === 401) {
+        console.error('Unauthorized: Invalid token');
+        this.promtToLogin(); // Prompt the user to log in if the token is invalid
+        return null; // Return null if the user is not authenticated
+      }
+      else if (response.status === 404) {
         throw new Error('Not Found: The player with this ID does not seem to exist');
       }
       else if (!response.ok) {
@@ -241,6 +275,10 @@ export class API {
       if (response.status === 400) {
         throw new Error('Bad Request: Gegevens kloppen niet met het model');
       }
+      else if (response.status === 401) {
+        console.error('Unauthorized: Invalid token');
+        this.promtToLogin(); // Prompt the user to log in if the token is invalid
+      }
       else if (response.status === 404) {
         throw new Error('Not Found: The player with this ID does not seem to exist');
       }
@@ -254,7 +292,7 @@ export class API {
 
   // admin
   // totaal aantal gespeelde spellen en spelers; overzicht van de gekozen api's
-  async adminGetGames(): Promise<adminAggregate> {
+  async adminGetGames(): Promise<adminAggregate | null> {
     try {
       const response = await fetch(`${this.baseUrl}/admin/aggregate`, {
         method: 'GET',
@@ -262,18 +300,23 @@ export class API {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
         },
       });
-      if (!response.ok) {
+      if (response.status === 401) {
+        console.error('Unauthorized: Invalid token');
+        this.promtToLogin(); // Prompt the user to log in if the token is invalid
+        return null; // Return null if the user is not authenticated
+      }
+      else if  (!response.ok) {
         throw new Error('Network response was not ok');
       }
       return await response.json();
     } catch (error) {
       console.error('Error getting admin overview:', error);
-      return {} as adminAggregate;
+      return null;
     }
   }
 
   // Overzicht van gebruikersnamen en email-adressen van alle spelers
-  async adminGetPlayer(): Promise<adminPlayer[]> {
+  async adminGetPlayer(): Promise<adminPlayer[] | null> {
     try {
       const response = await fetch(`${this.baseUrl}/admin/players`, {
         method: 'GET',
@@ -281,18 +324,23 @@ export class API {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
         },
       });
-      if (!response.ok) {
+      if (response.status === 401) {
+        console.error('Unauthorized: Invalid token');
+        this.promtToLogin(); // Prompt the user to log in if the token is invalid
+        return null; // Return null if the user is not authenticated
+      }
+      else if  (!response.ok) {
         throw new Error('Network response was not ok');
       }
       return await response.json();
     } catch (error) {
       console.error('Error getting admin overview:', error);
-      return [];
+      return null;
     }
   }
 
   // Totaal van het aantal gespeelde spelletjes per dag
-  async adminGetDates(): Promise<adminDateMap> {
+  async adminGetDates(): Promise<adminDateMap | null> {
     try {
       const response = await fetch(`${this.baseUrl}/admin/dates`, {
         method: 'GET',
@@ -300,13 +348,18 @@ export class API {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
         },
       });
-      if (!response.ok) {
+      if (response.status === 401) {
+        console.error('Unauthorized: Invalid token');
+        this.promtToLogin(); // Prompt the user to log in if the token is invalid
+        return null; // Return null if the user is not authenticated
+      }
+      else if  (!response.ok) {
         throw new Error('Network response was not ok');
       }
       return await response.json();
     } catch (error) {
       console.error('Error getting admin overview:', error);
-      return {};
+      return null;
     }
   }
 }

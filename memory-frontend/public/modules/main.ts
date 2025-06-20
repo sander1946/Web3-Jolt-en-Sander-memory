@@ -21,6 +21,13 @@ export async function getImageUrls(limit: number = 10): Promise<string[]> {
     return urls;
 }
 
+export function showPopup(content: string): void {
+    var popup = document.getElementById("popup");
+    popup!.style.display = "block";
+    var popup_content =  document.querySelector('.popup-content') as HTMLElement;
+    popup_content.innerHTML = content;
+}
+
 // step 3, create the memory cards
 function updateBoardEventHandler(game: Game): void {
     const board_size_input = document.querySelector('#board-size-input') as HTMLInputElement;

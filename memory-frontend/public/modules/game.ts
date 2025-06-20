@@ -1,6 +1,6 @@
 import { Card, Status } from './card.js';
 import { Board } from './board.js';
-import { getImageUrls } from './main.js';
+import { getImageUrls, showPopup } from './main.js';
 
 export class Game {
     // game variables
@@ -262,14 +262,10 @@ export class Game {
             this.stopGame();
             console.log('You found all pairs!');
             // Get the modal
-            var popup = document.getElementById("popup");
-            popup!.style.display = "block";
-            var popup_content =  document.querySelector('.popup-content') as HTMLElement;
-            popup_content.innerHTML = `
-            <h2>Game Over</h2>
-            <p>You found all pairs!</p>
-            <p>Your score is: ${this.score}</p>
-            <p>Your time is: ${this.elapsed_time} seconds</p>`;
+            showPopup(`<h2>Game Over</h2>
+                <p>You found all pairs!</p>
+                <p>Your score is: ${this.score}</p>
+                <p>Your time is: ${this.elapsed_time} seconds</p>`);
 
         }
     }
