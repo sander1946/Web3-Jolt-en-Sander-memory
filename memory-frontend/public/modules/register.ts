@@ -19,10 +19,10 @@ loginForm.addEventListener('submit', async function() {
   }
   setInputBorder(false); // Reset input borders
 
-  const usernameInput = form.elements.namedItem('username') as HTMLInputElement;
-  const emailInput = form.elements.namedItem('email') as HTMLInputElement;
-  const passwordInput = form.elements.namedItem('password') as HTMLInputElement;
-  const confirmPasswordInput = form.elements.namedItem('password_rep') as HTMLInputElement;
+  let usernameInput = form.elements.namedItem('username') as HTMLInputElement;
+  let emailInput = form.elements.namedItem('email') as HTMLInputElement;
+  let passwordInput = form.elements.namedItem('password') as HTMLInputElement;
+  let confirmPasswordInput = form.elements.namedItem('password_rep') as HTMLInputElement;
   if (!usernameInput?.value || !passwordInput?.value || !emailInput?.value || !confirmPasswordInput?.value) {
     setInputBorder(true, 'Please fill in all fields');
     return;
@@ -33,7 +33,7 @@ loginForm.addEventListener('submit', async function() {
     return;
   }
 
-  const api = new API();
+  let api = new API();
   try {
     let error = await api.publicRegisterPlayer(usernameInput.value, emailInput.value, passwordInput.value);
     if (error === true) {

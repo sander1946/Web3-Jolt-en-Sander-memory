@@ -25,7 +25,7 @@ export class API {
   // Overzicht van de spelers en hun gemiddelde score (ongesorteerd)
   async publicGetScores(): Promise<playerScores | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/memory/scores`);
+      let response = await fetch(`${this.baseUrl}/memory/scores`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -39,7 +39,7 @@ export class API {
   // Lijst van alle spelers met hun beste score (gesorteerd op score, lager is beter)
   async publicGetTopScores(): Promise<playerScores | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/memory/top-scores`);
+      let response = await fetch(`${this.baseUrl}/memory/top-scores`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -53,7 +53,7 @@ export class API {
   // Registeren van een speler
   async publicRegisterPlayer(username: string, email: string, password: string): Promise<boolean> {
     try {
-      const response = await fetch(`${this.baseUrl}/memory/register`, {
+      let response = await fetch(`${this.baseUrl}/memory/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export class API {
   // Als de credentials kloppen met de speler, komt hier een JWT terug
   async publicLoginPlayer(username: string, password: string): Promise<string | boolean> {
     try {
-      const response = await fetch(`${this.baseUrl}/memory/login`, {
+      let response = await fetch(`${this.baseUrl}/memory/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ export class API {
       else if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      const data = await response.json();
+      let data = await response.json();
       return data.token; // Assuming the token is returned in the response
     } catch (error) {
       console.error('Error logging in player:', error);
@@ -102,7 +102,7 @@ export class API {
 
   async publicSaveGame(data: any): Promise<void> {
     try {
-      const response = await fetch(`${this.baseUrl}/game/save`, {
+      let response = await fetch(`${this.baseUrl}/game/save`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ export class API {
   // Alle gegevens van speler `id`
   async playerGetPlayerData(): Promise<playerData | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/player/`, {
+      let response = await fetch(`${this.baseUrl}/player/`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
@@ -153,7 +153,7 @@ export class API {
   // De spellen die de speler met `id` heeft gespeeld
   async playerGetGames(): Promise<playerGames | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/player/games`, {
+      let response = await fetch(`${this.baseUrl}/player/games`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
@@ -180,7 +180,7 @@ export class API {
   // De voorkeuren van speler `id` (api en kleuren voor gesloten en gevonden kaarten)
   async playerGetPreferences(): Promise<playerPreferences | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/player/preferences`, {
+      let response = await fetch(`${this.baseUrl}/player/preferences`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
@@ -207,7 +207,7 @@ export class API {
   // Aanpassen van de voorkeuren van speler `id` (api en kleuren voor gesloten en gevonden kaarten)
   async playerUpdatePreferences(data: playerPreferencesUpdate): Promise<void> {
     try {
-      const response = await fetch(`${this.baseUrl}/player/preferences`, {
+      let response = await fetch(`${this.baseUrl}/player/preferences`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
@@ -235,7 +235,7 @@ export class API {
   // Het email-adres van speler `id`
   async playerGetEmail(): Promise<string | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/player/email`, {
+      let response = await fetch(`${this.baseUrl}/player/email`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
@@ -262,7 +262,7 @@ export class API {
   // Aanpassen van het email=adres van speler `id`
   async playerUpdateEmail(email: string): Promise<void> {
     try {
-      const response = await fetch(`${this.baseUrl}/player/email`, {
+      let response = await fetch(`${this.baseUrl}/player/email`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
@@ -292,7 +292,7 @@ export class API {
   // totaal aantal gespeelde spellen en spelers; overzicht van de gekozen api's
   async adminGetGames(): Promise<adminAggregate | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/admin/aggregate`, {
+      let response = await fetch(`${this.baseUrl}/admin/aggregate`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
@@ -316,7 +316,7 @@ export class API {
   // Overzicht van gebruikersnamen en email-adressen van alle spelers
   async adminGetPlayer(): Promise<adminPlayer[] | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/admin/players`, {
+      let response = await fetch(`${this.baseUrl}/admin/players`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
@@ -340,7 +340,7 @@ export class API {
   // Totaal van het aantal gespeelde spelletjes per dag
   async adminGetDates(): Promise<adminDateMap | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/admin/dates`, {
+      let response = await fetch(`${this.baseUrl}/admin/dates`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers

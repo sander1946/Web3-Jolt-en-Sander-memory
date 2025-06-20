@@ -6,7 +6,7 @@ export async function getImages(limit: number): Promise<any[]> {
         for (let i = 0; i < limit; i++) {
             urls.push(`https://picsum.photos/500/500?random=${i}`);
         }
-        const json = JSON.parse(JSON.stringify(urls));
+        let json = JSON.parse(JSON.stringify(urls));
         return json;
     } catch (error) {
         console.error('Error fetching Lorem Picsum images:', error);

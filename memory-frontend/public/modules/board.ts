@@ -22,7 +22,7 @@ export class Board {
     }
 
     removeCard(card: Card): void {
-        const index = this.cards.indexOf(card);
+        let index = this.cards.indexOf(card);
         if (index > -1) {
             this.cards.splice(index, 1);
             card.remove();

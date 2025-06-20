@@ -6,46 +6,38 @@ import type { playerPreferences } from './interfaces.js';
 // global functions
 
 export async function getImageUrls(limit: number = 10): Promise<string[]> {
-    const provider = getProvider();
-    const images = await provider.getImages(limit);
-    const urls = images.map((img: any) => provider.getImageUrl(img));
+    let provider = getProvider();
+    let images = await provider.getImages(limit);
+    let urls = images.map((img: any) => provider.getImageUrl(img));
     return urls;
 }
 
-function updateBoardEventHandler(game: Game): void {
-    const board_size_input = document.querySelector('#board-size-input') as HTMLInputElement;
-    if(Number(board_size_input.value) <= 1) {
-        board_size_input.value = "1";
-    }
-    game.restartGame(Number(board_size_input.value)); // setup the game
-}
-
 function setTopScores(): void {
-    const top_scores_list = document.querySelector('.leaderboard-list') as HTMLOListElement;
+    let top_scores_list = document.querySelector('.leaderboard-list') as HTMLOListElement;
     top_scores_list.innerHTML = ''; // clear the top scores div
-    const api = new API();
+    let api = new API();
     api.publicGetTopScores().then((scores) => {
         if (!Array.isArray(scores) || scores.length === 0) {
             // Fill all 5 with placeholders if no scores
             for (let i = 0; i < 5; i++) {
-                const li = document.createElement('li');
+                let li = document.createElement('li');
                 li.innerHTML = `<span class="leaderboard-item">-----</span><span class="leaderboard-score"></span>`;
                 top_scores_list.appendChild(li);
             }
             return;
         }
         // Ensure scores is at least 5 items, filling with placeholders if needed
-        const filledScores = [...scores];
+        let filledScores = [...scores];
         while (filledScores.length < 5) {
             filledScores.push({ username: "-----", score: 0 });
         }
         filledScores.slice(0, 5).forEach((score) => {
-            const li = document.createElement('li');
-            const name_span = document.createElement('span');
+            let li = document.createElement('li');
+            let name_span = document.createElement('span');
             name_span.className = 'leaderboard-item';
             name_span.innerText = score.username;
 
-            const score_span = document.createElement('span');
+            let score_span = document.createElement('span');
             score_span.className = 'leaderboard-score';
             if (score.score === 0 && score.username === "-----") {
                 score_span.innerText = "";
@@ -66,12 +58,12 @@ const game = new Game();
 
 const new_game_button = document.querySelector('#new-game-button') as HTMLButtonElement;
 new_game_button.addEventListener('click', async () => {
-    updateBoardEventHandler(game);
+    game.restartGame(15); // setup the game with 15 pairs of cards as default
 });
 
 // register the event handler for the board size input and setup the game when the page loads
 window.onload = async () => { 
-    const api = new API();
+    let api = new API();
     api.playerGetPlayerData() // login check
     let preferencesString = localStorage.getItem('preferences');
     let preferences: playerPreferences | null = null;

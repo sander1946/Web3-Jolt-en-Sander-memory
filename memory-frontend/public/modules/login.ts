@@ -19,16 +19,16 @@ loginForm.addEventListener('submit', async function() {
   }
   setInputBorder(false); // Reset input borders
 
-  const usernameInput = form.elements.namedItem('username') as HTMLInputElement;
-  const passwordInput = form.elements.namedItem('password') as HTMLInputElement;
+  let usernameInput = form.elements.namedItem('username') as HTMLInputElement;
+  let passwordInput = form.elements.namedItem('password') as HTMLInputElement;
   if (!usernameInput?.value || !passwordInput?.value) {
     setInputBorder(true, 'Please fill in both username and password');
     return;
   }
 
-  const api = new API();
+  let api = new API();
   try {
-    const tokenResult = await api.publicLoginPlayer(usernameInput.value, passwordInput.value);
+    let tokenResult = await api.publicLoginPlayer(usernameInput.value, passwordInput.value);
 
     if (typeof tokenResult === "boolean") {
       if (tokenResult !== true) {
