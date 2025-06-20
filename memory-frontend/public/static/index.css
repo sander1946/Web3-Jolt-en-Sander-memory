@@ -7,7 +7,7 @@
     --items-background-color: #d6fffe;
     --card-img-background-color: #0000002f;
     --counter-background-color: #fa9200;
-    --card-img-closed-background-img: url(card-closed.png);
+    --card-img-closed-background-img: url(/static/card-closed.png);
 }
 
 body {

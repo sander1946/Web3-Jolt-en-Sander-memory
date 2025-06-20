@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play | Memory</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/static/index.css">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
 </head>
 <body>
     <div class="page-content">
@@ -24,12 +25,11 @@
                 </div>
             </a>
         </div> 
-        <!-- 6x6 Game board, in the middle left of the page -->
+        <!-- Game board, in the middle left of the page -->
         <div class="game-container">
             <div class="progressbar">
                 <span class="progress" id="time-left-progress"></span>
             </div>
-            <!-- TODO: uncomment this message -->
             <div class="game-board" id="game-board">
                 <h2>
                     Kies het gewenste hoeveelheid paren
@@ -58,7 +58,7 @@
                         <div class="top-vijf">
                             <h2 class="leaderboard-name">Top vijf</h2>
                             <ol type="1" class="leaderboard-list">
-                                
+                                <!-- This will be filled by the js-->
                             </ol>
                         </div>
                         <h2 class="avg-time">Gemiddelde speeltijd: 
@@ -85,7 +85,7 @@
             </div>
         </div>
     </div>
-    <script src="/index.js"></script>
+    <script src="/static/index.js"></script>
     <script type="module" src="/dist/modules/memory.js"></script>
 </body>
 </html>

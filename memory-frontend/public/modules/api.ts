@@ -1,4 +1,4 @@
-import type { adminAggregate, adminDateMap, adminPlayer, playerData, playerGames, playerPreferences, playerPreferencesUpdate, playerScores, PlayerToken } from "./interfaces";
+import type { adminAggregate, adminDateMap, adminPlayer, playerData, playerGames, playerPreferences, playerPreferencesUpdate, playerScores } from "./interfaces";
 import { showPopup } from './main.js';
 
 export class API {
@@ -126,7 +126,7 @@ export class API {
   // Alle gegevens van speler `id`
   async playerGetPlayerData(): Promise<playerData | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/player`, {
+      const response = await fetch(`${this.baseUrl}/player/`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers

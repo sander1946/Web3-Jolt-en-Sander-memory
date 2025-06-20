@@ -1,4 +1,4 @@
-import { Card, Status } from './card.js';
+import { Card } from './card.js';
 import { Board } from './board.js';
 import { getImageUrls } from './memory.js';
 import { API } from './api.js';
