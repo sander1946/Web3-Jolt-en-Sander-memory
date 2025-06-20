@@ -10,6 +10,10 @@
     --card-img-closed-background-img: url(card-closed.png);
 }
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .page-content {
     display: grid;
     grid-template-areas: 
@@ -19,7 +23,6 @@
     grid-template-columns: 90vw;
     grid-gap: 10px;
     max-width: 98vw;
-
 }
 
 .header-wrapper {
@@ -27,7 +30,7 @@
     display: flex;
     justify-content: center;
     background-color: var(--header-color);
-
+    border-radius: 15px;
 }
 
 .header {
@@ -129,9 +132,11 @@
     transform: rotateY(180deg);
 }
 
-.game-information{
+.game-information {
     list-style: none;
+    display: flex;
     padding: 0;
+    Margin: 0;
 }
 
 .pairs {

@@ -2,9 +2,10 @@ FROM node:22.12-alpine
 
 EXPOSE 8080
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY . /usr/src/app
+# Copy package files for dependency installation
+COPY ./ /app/
 
 RUN npm install -g bun
 

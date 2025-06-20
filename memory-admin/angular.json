@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "memory": {
+    "memory-admin": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +56,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "memory:build:production"
+              "buildTarget": "memory-admin:build:production"
             },
             "development": {
-              "buildTarget": "memory:build:development"
+              "buildTarget": "memory-admin:build:development"
             }
           },
           "defaultConfiguration": "development"
