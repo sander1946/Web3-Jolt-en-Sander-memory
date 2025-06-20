@@ -1,6 +1,7 @@
 import { setProvider, getProvider, type ProviderName } from './providers/providerManager.js';
 import { Game } from './game.js';
 import { API } from './api.js';
+import type { playerPreferences } from './interfaces.js';
 
 // global functions
 
@@ -72,21 +73,34 @@ new_game_button.addEventListener('click', async () => {
 window.onload = async () => { 
     const api = new API();
     api.playerGetPlayerData() // login check
-    let prefecensed = await api.playerGetPreferences(); // get the preferences
-    if (prefecensed) {
+    let preferencesString = localStorage.getItem('preferences');
+    let preferences: playerPreferences | null = null;
+
+    if (!preferencesString) { // if preferences are not in localStorage, get them from the API
+        preferences = await api.playerGetPreferences(); // get the preferences
+    } else {
         try {
-            if (prefecensed.color_found !== '') {
-                document.documentElement.style.setProperty('--card-found-color', prefecensed.color_found);
+            preferences = JSON.parse(preferencesString) as playerPreferences; // parse the preferences from localStorage
+        }
+        catch (error) {
+            console.error('Error parsing preferences from localStorage:', error);
+            preferences = null; // reset preferences if parsing fails
+        }
+    }
+    if (preferences) {
+        try {
+            if (preferences.color_found !== '') {
+                document.documentElement.style.setProperty('--card-found-color', preferences.color_found);
             } else {
                 document.documentElement.style.setProperty('--card-found-color', '#722c80');
             }
-            if (prefecensed.color_closed !== '') {
-                document.documentElement.style.setProperty('--card-closed-color', prefecensed.color_closed);
+            if (preferences.color_closed !== '') {
+                document.documentElement.style.setProperty('--card-closed-color', preferences.color_closed);
             } else {
                 document.documentElement.style.setProperty('--card-closed-color', '#8ff357');
             }
-            if (prefecensed.preferred_api !== '') {
-                setProvider(prefecensed.preferred_api as ProviderName); // setup the game with the provider from preferences
+            if (preferences.preferred_api !== '') {
+                setProvider(preferences.preferred_api as ProviderName); // setup the game with the provider from preferences
             } else {
                 setProvider("cataas" as ProviderName); // setup the game with cataas as default
             }

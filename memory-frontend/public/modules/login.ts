@@ -40,6 +40,7 @@ loginForm.addEventListener('submit', async function() {
     }
     setInputBorder(false);
     console.log('Login successful:', tokenResult);
+    localStorage.clear(); // Clear any existing local storage such as preferences
     localStorage.setItem('token', tokenResult);
     document.location.href = '/'; // Redirect to the home page after successful login
   } catch (error) {
