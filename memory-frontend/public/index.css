@@ -5,6 +5,7 @@
     --card-found-color: #722c80;
     --card-text-color: white;
     --items-background-color: #d6fffe;
+    --items-background-color2: #e9f4ff;
     --card-img-background-color: #0000002f;
     --counter-background-color: #fa9200;
     --card-img-closed-background-img: url(card-closed.png);
@@ -137,6 +138,11 @@ body {
     display: flex;
     padding: 0;
     Margin: 0;
+}
+
+.time-past {
+    margin-left: 10px;
+    background-color: var(--items-background-color2);
 }
 
 .pairs {
@@ -308,6 +314,14 @@ span.progress {
         grid-template-columns: repeat(2, 1fr);
         max-width: 90vw;
     }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
+    }
 }
 
 @media (min-width: 300px) and (max-width: 400px) {
@@ -324,6 +338,14 @@ span.progress {
         grid-template-columns: repeat(3, 1fr);
         max-width: 90vw;
     }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
+    }
 }
 
 @media (min-width: 400px) and (max-width: 500px) {
@@ -339,6 +361,14 @@ span.progress {
     .game-board:has(.card-container) {
         grid-template-columns: repeat(4, 1fr);
         max-width: 90vw;
+    }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
     }
 }
 
@@ -357,6 +387,14 @@ span.progress {
         grid-template-columns: repeat(5, 1fr);
         max-width: 90vw;
     }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
+    }
 }
 
 @media (min-width: 750px) and (max-width: 1000px) {
@@ -373,6 +411,14 @@ span.progress {
     .game-board:has(.card-container) {
         grid-template-columns: repeat(4, 1fr);
     }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
+    }
 }
 
 @media (min-width: 1000px) and (max-width: 1200px) {
@@ -388,6 +434,14 @@ span.progress {
 
     .game-board:has(.card-container) {
         grid-template-columns: repeat(5, 1fr);
+    }
+
+    .game-information{
+        display: block;
+    }
+
+    .time-past{
+        margin-left:0px;
     }
 }
 
