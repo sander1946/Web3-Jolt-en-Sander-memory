@@ -19,10 +19,9 @@
 
 .header-wrapper a{
     text-decoration: none;
-    margin: 5px 10px 0px 10px;
+    margin: 5px 20px;
     color: black;
 }
-
 
 .login-container {
     background-color: var(--items-background-color);
