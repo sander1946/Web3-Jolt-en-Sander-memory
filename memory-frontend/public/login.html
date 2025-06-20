@@ -10,23 +10,35 @@
     <div class="page-content">
         <!-- Information header, On the top of the page -->
         <div class="header-wrapper">
+            <a href="/">
+                <div class="link-box">
+                    <h2>Home</h2>
+                </div>
+            </a>
             <div class="header">
                 <h1>Login</h1>
             </div>
+            <a href="/login">
+                <div class="link-box">
+                    <h2>Login</h2>
+                </div>
+            </a>
         </div> 
 
         <!-- 6x6 Game board, in the middle left of the page -->
         <div class="login-container">
             <form id="form">
-                <div id="error"></div>
                 <h2 class="login-header">Vul hier uw gegevens in</h2>
                 <div class="container">
                     <label for="username"><b>Gebruikersnaam:</b></label>
                     <input type="text" placeholder="JohnDoe1" name="username" required>
                     <label for="password"><b>Wachtwoord:</b></label>
                     <input type="password" placeholder="**********" name="password" required>
-                    <span class="psw"><a href="#">Wachtwoord vergeten?</a></span>
-                    <button type="submit" id="submit">Login</button>
+                    <div class="temp">
+                        <div id="error"></div>
+                        <div class="psw"><a href="#">Wachtwoord vergeten?</a></div>
+                    </div>
+                    <button type="submit" id="submit">Login</button>        
                     <span class="new-account"><a href="/register">Nog geen account? Maak er hier een aan!</a></span>
                 </div>
             </form>

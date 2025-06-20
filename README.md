@@ -3,18 +3,19 @@
 Om dit projecte te kunnen draaien, is docker en docker compose nodig
 
 <!-- TODO: bug -->
-Eerst moet npm install uitgevoerd worden binnen de folder "memory-admin":
+Om deze service op te starten run de volgende commando's in de gegeven volgorde:
 
 ```bash
+cd memory-frontend
+npm install
+tsc
+cd ..
+
+docker compose up --build -d
+
 cd memory-admin
 npm install
-cd ..
-```
-
-Alle servers kun je starten met de volgende commando
-
-```bash
-docker compose up --build -d
+ng serve
 ```
 
 Om de specifieke server te runnen, kun je de volgende commando's draaien

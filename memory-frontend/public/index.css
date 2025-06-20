@@ -5,7 +5,6 @@
     --card-found-color: #722c80;
     --card-text-color: white;
     --items-background-color: #d6fffe;
-    --items-background-color2: #e9f4ff;
     --card-img-background-color: #0000002f;
     --counter-background-color: #fa9200;
     --card-img-closed-background-img: url(card-closed.png);
@@ -29,9 +28,15 @@ body {
 .header-wrapper {
     grid-area: header;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     background-color: var(--header-color);
     border-radius: 15px;
+}
+
+.header-wrapper a{
+    text-decoration: none;
+    margin: 5px 10px 0px 10px;
+    color: black;
 }
 
 .header {
@@ -142,7 +147,6 @@ body {
 
 .time-past {
     margin-left: 10px;
-    background-color: var(--items-background-color2);
 }
 
 .pairs {
