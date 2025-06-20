@@ -5,6 +5,7 @@
     --card-found-color: #722c80;
     --card-text-color: white;
     --items-background-color: #d6fffe;
+    --items-background-color2: #e9f4ff;
     --card-img-background-color: #0000002f;
     --counter-background-color: #fa9200;
     --card-img-closed-background-img: url(card-closed.png);
@@ -135,6 +136,11 @@
     padding: 0;
     Margin: 0;
 
+}
+
+.time-past {
+    margin-left: 10px;
+    background-color: var(--items-background-color2);
 }
 
 .pairs {
