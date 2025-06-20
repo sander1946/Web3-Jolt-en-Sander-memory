@@ -129,6 +129,11 @@
     transform: rotateY(180deg);
 }
 
+.game-information{
+    list-style: none;
+    padding: 0;
+}
+
 .pairs {
     background-color: var(--counter-img-background-color);
 }
