@@ -284,13 +284,14 @@ export class Game {
                             color_found: ''
                         }; // default provider if no preferences are set
                     }
-                    api.publicSaveGame({
+                    await api.publicSaveGame({
                         id: player.id,
                         score: this.score,
                         api: preferences.preferred_api,
                         color_closed: preferences.color_closed,
                         color_found: preferences.color_found,
                     });
+                    window.location.reload(); // reload the page to reset the game and show the new score
                 }
             });
         }
