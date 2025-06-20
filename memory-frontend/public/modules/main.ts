@@ -4,11 +4,6 @@ import { API } from './api.js';
 
 // global functions
 
-// step 1, select the provider, this happens automatically when someone clicks on the select element
-// this is done in the setupProviderSelector function
-
-
-// step 2, get the images from the provider
 export async function getImageUrls(limit: number = 10): Promise<string[]> {
     const provider = getProvider();
     const images = await provider.getImages(limit);
@@ -23,7 +18,6 @@ export function showPopup(content: string): void {
     popup_content.innerHTML = content;
 }
 
-// step 3, create the memory cards
 function updateBoardEventHandler(game: Game): void {
     const board_size_input = document.querySelector('#board-size-input') as HTMLInputElement;
     if(Number(board_size_input.value) <= 1) {
@@ -73,9 +67,6 @@ function setTopScores(): void {
         top_scores_list.innerText = '<span class="error">Error fetching top scores</span>';
     });
 }
-
-// global setup
-// change all default values here as needed
 
 const game = new Game();
 
