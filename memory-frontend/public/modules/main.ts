@@ -35,7 +35,6 @@ function setTopScores(): void {
     top_scores_list.innerHTML = ''; // clear the top scores div
     const api = new API();
     api.publicGetTopScores().then((scores) => {
-        console.log('Top scores:', scores);
         if (!Array.isArray(scores) || scores.length === 0) {
             // Fill all 5 with placeholders if no scores
             for (let i = 0; i < 5; i++) {

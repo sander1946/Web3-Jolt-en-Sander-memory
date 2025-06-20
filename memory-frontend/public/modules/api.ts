@@ -41,7 +41,7 @@ export class API {
   }
 
   // Registeren van een speler
-  async publicRegisterPlayer(username: string, email: string, password: string): Promise<void> {
+  async publicRegisterPlayer(username: string, email: string, password: string): Promise<boolean> {
     try {
       const response = await fetch(`${this.baseUrl}/memory/register`, {
         method: 'POST',
@@ -53,11 +53,13 @@ export class API {
       if (response.status === 400) {
         throw new Error('Bad Request: Gegevens niet kloppen met het model');
       }
-      else if (!response.ok) {
+      else if (!(response.status === 201 || response.status === 200)) {
         throw new Error('Network response was not ok');
       }
+      return false; // Registration successful
     } catch (error) {
       console.error('Error registering player:', error);
+      return true; // Return true to indicate an error occurred
     }
   }
 
@@ -102,7 +104,7 @@ export class API {
       if (response.status === 400) {
         throw new Error('Bad Request: Gegevens kloppen niet met het model');
       }
-      else if (!response.ok) {
+      else if (!(response.status === 201 || response.status === 200)) {
         throw new Error('Network response was not ok');
       }
     } catch (error) {
@@ -195,7 +197,7 @@ export class API {
       else if (response.status === 404) {
         throw new Error('Not Found: The player with this ID does not seem to exist');
       }
-      else if (!response.ok) {
+      else if (!(response.status === 204 || response.status === 200)) {
         throw new Error('Network response was not ok');
       }
     } catch (error) {
@@ -229,7 +231,7 @@ export class API {
   async playerUpdateEmail(email: string): Promise<void> {
     try {
       const response = await fetch(`${this.baseUrl}/player/email`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Authorization': `Bearer ${this.getAPIToken()}`, // Include the token in the request headers
           'Content-Type': 'application/json',
@@ -242,7 +244,7 @@ export class API {
       else if (response.status === 404) {
         throw new Error('Not Found: The player with this ID does not seem to exist');
       }
-      else if (!response.ok) {
+      else if (!(response.status === 204 || response.status === 200)) {
         throw new Error('Network response was not ok');
       }
     } catch (error) {
