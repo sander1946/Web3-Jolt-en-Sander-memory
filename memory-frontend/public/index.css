@@ -10,6 +10,10 @@
     --card-img-closed-background-img: url(card-closed.png);
 }
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .page-content {
     display: grid;
     grid-template-areas: 
@@ -26,6 +30,7 @@
     display: flex;
     justify-content: center;
     background-color: var(--header-color);
+    border-radius: 15px;
 }
 
 .header {
