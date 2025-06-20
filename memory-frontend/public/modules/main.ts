@@ -1,5 +1,6 @@
 import { setProvider, getProvider, type ProviderName } from './providers/providerManager.js';
 import { Game } from './game.js';
+import { API } from './api.js';
 
 // global functions
 
@@ -29,6 +30,49 @@ function updateBoardEventHandler(game: Game): void {
     game.restartGame(Number(board_size_input.value)); // setup the game
 }
 
+function setTopScores(): void {
+    const top_scores_list = document.querySelector('.leaderboard-list') as HTMLOListElement;
+    top_scores_list.innerHTML = ''; // clear the top scores div
+    const api = new API();
+    api.publicGetTopScores().then((scores) => {
+        console.log('Top scores:', scores);
+        if (!Array.isArray(scores) || scores.length === 0) {
+            // Fill all 5 with placeholders if no scores
+            for (let i = 0; i < 5; i++) {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="leaderboard-item">-----</span><span class="leaderboard-score"></span>`;
+                top_scores_list.appendChild(li);
+            }
+            return;
+        }
+        // Ensure scores is at least 5 items, filling with placeholders if needed
+        const filledScores = [...scores];
+        while (filledScores.length < 5) {
+            filledScores.push({ username: "-----", score: 0 });
+        }
+        filledScores.slice(0, 5).forEach((score) => {
+            const li = document.createElement('li');
+            const name_span = document.createElement('span');
+            name_span.className = 'leaderboard-item';
+            name_span.innerText = score.username;
+
+            const score_span = document.createElement('span');
+            score_span.className = 'leaderboard-score';
+            if (score.score === 0 && score.username === "-----") {
+                score_span.innerText = "";
+                li.innerHTML = name_span.outerHTML + score_span.outerHTML;
+            } else {
+                score_span.innerText = score.score.toString();
+                li.innerHTML = name_span.outerHTML + ' : ' + score_span.outerHTML;
+            }
+            top_scores_list.appendChild(li);
+        });
+    }).catch((error) => {
+        console.error('Error fetching top scores:', error);
+        top_scores_list.innerText = '<span class="error">Error fetching top scores</span>';
+    });
+}
+
 // global setup
 // change all default values here as needed
 
@@ -44,4 +88,5 @@ window.onload = () => {
     setupProviderSelector(); // setup the provider selector
     setProvider("cataas" as ProviderName); // setup the game with cataas as default
     game.setupGame(8); // setup the game with 8 pairs of cards as default
+    setTopScores(); // get the top scores from the server and display them
 };
