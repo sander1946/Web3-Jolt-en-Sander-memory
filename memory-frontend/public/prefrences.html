@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play | Memory</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="page-content">
+        <!-- Information header, On the top of the page -->
+        <div class="header-wrapper">
+            <a href="/">
+                <div class="link-box">
+                    <h2>Home</h2>
+                </div>
+            </a>
+            <div class="header">
+                <h1>Javascript Memory</h1>
+            </div>
+            <a href="/login">
+                <div class="link-box">
+                    <script>
+                        // Check if the user is logged in
+                        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                        const loginH2 = document.querySelector('a .link-box h2');
+
+                        if (isLoggedIn) {
+                            loginLink.textContent = 'Logout';
+                            loginLink.href = '/logout';
+                        } else {
+                            loginLink.textContent = 'Login';
+                            loginLink.href = '/login';
+                        }
+                    </script>
+                    <h2>Login</h2>
+                </div>
+            </a>
+        </div> 
+
+        <!-- sidebar, at the right of the page -->
+        <div class="sidebar-wrapper">
+            <div class="sidebar">
+                <div class="sidebar-content">
+                    <div class="legend">
+                        <h1 class="board-settings">Instellingen</h1>
+                        <h2 class="board-size">Aantal paren:
+                            <input name="board-size-input" id="board-size-input" type="number" min="1" value="8">
+                        </h2>
+                        <hr>
+                        <h2>Kaart Kleuren</h2>
+                        <div class="legend-item">
+                            <label for="legend-color-input-closed" class="legend-color" id="legend-color">Gesloten kaarten</label>
+                            <input id="legend-color-input-closed" type="color" value="#acf789" class="legend-color-input" data-card-status="closed">
+                        </div>
+                        <div class="legend-item">
+                            <label for="legend-color-input-open" class="legend-color" id="legend-color">Open kaarten</label>
+                            <input id="legend-color-input-open" type="color" value="#7ba94d" class="legend-color-input" data-card-status="open">
+                        </div>
+                        <div class="legend-item">
+                            <label for="legend-color-input-found" class="legend-color" id="legend-color">Gevonden kaarten</label>
+                            <input id="legend-color-input-found" type="color" value="#9d6ca7" class="legend-color-input" data-card-status="found">
+                        </div>
+                        <hr>
+                        <h2>Kaart afbeeldingen</h2>
+                        <div class="legend-item">
+                            <select id="provider-select">
+                                <option value="cataas">Katten</option>
+                                <option value="dogapi">Honden</option>
+                                <option value="lorempicsum">Willekeurige</option>
+                            </select>
+                            <label for="provider-select" class="legend-color">Afbeeldingen</label>
+                        </div>
+                        <hr>
+                        <div class="sidebar-footer">
+                            <button id="new-game-button" class="new-game-button">Nieuw Spel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/dist/modules/prefrences.js"></script>
+</body>
+</html>
