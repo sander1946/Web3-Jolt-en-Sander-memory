@@ -129,4 +129,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-/memory-admin/package_lock.json
+memory-admin/package-lock.json
