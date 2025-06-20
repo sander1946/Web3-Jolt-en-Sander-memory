@@ -6,12 +6,7 @@ import { API } from './api.js';
 
 // step 1, select the provider, this happens automatically when someone clicks on the select element
 // this is done in the setupProviderSelector function
-function setupProviderSelector(): void {
-    const select = document.getElementById('provider-select') as HTMLSelectElement;
-    select.addEventListener('change', async () => {
-        setProvider(select.value as ProviderName);
-    });
-}
+
 
 // step 2, get the images from the provider
 export async function getImageUrls(limit: number = 10): Promise<string[]> {
@@ -91,7 +86,6 @@ new_game_button.addEventListener('click', async () => {
 
 // register the event handler for the board size input and setup the game when the page loads
 window.onload = () => { 
-    setupProviderSelector(); // setup the provider selector
     setProvider("cataas" as ProviderName); // setup the game with cataas as default
     game.setupGame(8); // setup the game with 8 pairs of cards as default
     setTopScores(); // get the top scores from the server and display them
