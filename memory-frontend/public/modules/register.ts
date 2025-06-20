@@ -36,7 +36,7 @@ loginForm.addEventListener('submit', async function() {
   const api = new API();
   try {
     let error = await api.publicRegisterPlayer(usernameInput.value, emailInput.value, passwordInput.value);
-    if (error !== true) {
+    if (error === true) {
       setInputBorder(true, 'Something went wrong while registering');
       return;
     } 
