@@ -1,5 +1,5 @@
 import type { adminAggregate, adminDateMap, adminPlayer, playerData, playerGames, playerPreferences, playerScores, PlayerToken } from "./interfaces";
-import { showPopup } from "./main.js";
+import { showPopup } from './main.js';
 
 export class API {
   private baseUrl: string;
@@ -19,7 +19,7 @@ export class API {
 
   public getAPIToken(): string | null {
     // Retrieve the API token from local storage or any other secure storage
-    return localStorage.getItem('api_token');
+    return localStorage.getItem('token');
   }
 
   // Overzicht van de spelers en hun gemiddelde score (ongesorteerd)
@@ -74,7 +74,7 @@ export class API {
   }
 
   // Als de credentials kloppen met de speler, komt hier een JWT terug
-  async publicLoginPlayer(username: string, password: string): Promise<PlayerToken | boolean> {
+  async publicLoginPlayer(username: string, password: string): Promise<string | boolean> {
     try {
       const response = await fetch(`${this.baseUrl}/memory/login`, {
         method: 'POST',

@@ -40,7 +40,7 @@ loginForm.addEventListener('submit', async function() {
     }
     setInputBorder(false);
     console.log('Login successful:', tokenResult);
-    localStorage.setItem('token', tokenResult.token);
+    localStorage.setItem('token', tokenResult);
     document.location.href = '/'; // Redirect to the home page after successful login
   } catch (error) {
     setInputBorder(true, 'There was a problem with the fetch operation');

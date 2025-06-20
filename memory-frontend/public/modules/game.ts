@@ -1,7 +1,8 @@
 import { Card, Status } from './card.js';
 import { Board } from './board.js';
-import { getImageUrls, showPopup } from './main.js';
+import { getImageUrls } from './memory.js';
 import { API } from './api.js';
+import { showPopup } from './main.js';
 
 export class Game {
     // game variables
