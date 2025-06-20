@@ -3,13 +3,6 @@ import type { playerPreferencesUpdate } from "./interfaces.js";
 import { showPopup } from "./main.js";
 import { setProvider, type ProviderName } from "./providers/providerManager.js";
 
-// function setupProviderSelector(): void {
-//     const select = document.getElementById('provider-select') as HTMLSelectElement;
-//     select.addEventListener('change', async () => {
-//         setProvider(select.value as ProviderName);
-//     });
-// }
-
 function setupSavePreferencesButton(): void {
     const saveButton = document.getElementById('save-preferences') as HTMLButtonElement;
     saveButton.addEventListener('click', async () => {
@@ -49,14 +42,6 @@ function updateCardColor(colorInput: HTMLInputElement): void {
             break;
     }
 }
-
-// Register event listeners for all color inputs on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-    const colorInputs = document.querySelectorAll('input.legend-color-input[data-card-status]') as NodeListOf<HTMLInputElement>;
-    // colorInputs.forEach(input => {
-    //     input.addEventListener('change', () => updateCardColor(input));
-    // });
-});
 
 const api = new API();
 
