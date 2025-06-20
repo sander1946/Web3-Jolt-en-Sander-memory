@@ -69,16 +69,38 @@ new_game_button.addEventListener('click', async () => {
 });
 
 // register the event handler for the board size input and setup the game when the page loads
-window.onload = () => { 
+window.onload = async () => { 
     const api = new API();
-    api.playerGetPlayerData().then((data) => {
-        if (data && data.name) {
-            
+    api.playerGetPlayerData() // login check
+    let prefecensed = await api.playerGetPreferences(); // get the preferences
+    if (prefecensed) {
+        try {
+            if (prefecensed.color_found !== '') {
+                document.documentElement.style.setProperty('--card-found-color', prefecensed.color_found);
+            } else {
+                document.documentElement.style.setProperty('--card-found-color', '#722c80');
+            }
+            if (prefecensed.color_closed !== '') {
+                document.documentElement.style.setProperty('--card-closed-color', prefecensed.color_closed);
+            } else {
+                document.documentElement.style.setProperty('--card-closed-color', '#8ff357');
+            }
+            if (prefecensed.preferred_api !== '') {
+                setProvider(prefecensed.preferred_api as ProviderName); // setup the game with the provider from preferences
+            } else {
+                setProvider("cataas" as ProviderName); // setup the game with cataas as default
+            }
+        } catch (error) {
+            setProvider("cataas" as ProviderName); // setup the game with cataas as default
+            document.documentElement.style.setProperty('--card-found-color', '#722c80');
+            document.documentElement.style.setProperty('--card-closed-color', '#8ff357');
+            console.error('Error setting preferences:', error);
         }
-    }).catch((error) => {
-        console.error('Error fetching player data:', error);
-    });
-    setProvider("cataas" as ProviderName); // setup the game with cataas as default
+    } else {
+        setProvider("cataas" as ProviderName); // setup the game with cataas as default
+        document.documentElement.style.setProperty('--card-found-color', '#722c80');
+        document.documentElement.style.setProperty('--card-closed-color', '#8ff357');
+    }
     game.setupGame(8); // setup the game with 8 pairs of cards as default
     setTopScores(); // get the top scores from the server and display them
 };

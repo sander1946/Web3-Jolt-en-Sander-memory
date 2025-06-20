@@ -39,6 +39,12 @@ export interface playerPreferences {
   color_found: string;        // e.g., "#ff0"
 }
 
+export interface playerPreferencesUpdate {
+  api: string;
+  color_found: string;
+  color_closed: string;
+}
+
 export interface adminTotalGames {
   aantal_spellen: number;
 }

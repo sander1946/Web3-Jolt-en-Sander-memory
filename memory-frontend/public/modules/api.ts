@@ -1,4 +1,4 @@
-import type { adminAggregate, adminDateMap, adminPlayer, playerData, playerGames, playerPreferences, playerScores, PlayerToken } from "./interfaces";
+import type { adminAggregate, adminDateMap, adminPlayer, playerData, playerGames, playerPreferences, playerPreferencesUpdate, playerScores, PlayerToken } from "./interfaces";
 import { showPopup } from './main.js';
 
 export class API {
@@ -205,7 +205,7 @@ export class API {
   }
 
   // Aanpassen van de voorkeuren van speler `id` (api en kleuren voor gesloten en gevonden kaarten)
-  async playerUpdatePreferences(data: any): Promise<void> {
+  async playerUpdatePreferences(data: playerPreferencesUpdate): Promise<void> {
     try {
       const response = await fetch(`${this.baseUrl}/player/preferences`, {
         method: 'POST',

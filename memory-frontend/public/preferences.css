@@ -1,18 +1,4 @@
-:root {
-    --header-color: #d6fffe;
-    --card-closed-color: #8ff357;
-    --card-open-color: #438400;
-    --card-found-color: #722c80;
-    --card-text-color: white;
-    --items-background-color: #d6fffe;
-    --card-img-background-color: #0000002f;
-    --counter-background-color: #fa9200;
-    --card-img-closed-background-img: url(card-closed.png);
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
+@import url("/index.css");
 
 .page-content {
     display: grid;
@@ -23,24 +9,6 @@ body {
     grid-template-columns: 90vw;
     grid-gap: 10px;
     max-width: 98vw;
-}
-
-.header-wrapper {
-    grid-area: header;
-    display: flex;
-    justify-content: space-between;
-    background-color: var(--header-color);
-    border-radius: 15px;
-}
-
-.header-wrapper a{
-    text-decoration: none;
-    margin: 5px 25px;
-    color: black;
-}
-
-.header {
-    text-align: center; 
 }
 
 .sidebar-wrapper {
