@@ -101,6 +101,6 @@ window.onload = async () => {
         document.documentElement.style.setProperty('--card-found-color', '#722c80');
         document.documentElement.style.setProperty('--card-closed-color', '#8ff357');
     }
-    game.setupGame(8); // setup the game with 8 pairs of cards as default
+    game.setupGame(15); // setup the game with 15 pairs of cards as default
     setTopScores(); // get the top scores from the server and display them
 };
