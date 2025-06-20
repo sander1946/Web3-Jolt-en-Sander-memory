@@ -4,11 +4,6 @@ import { API } from './api.js';
 
 // global functions
 
-// step 1, select the provider, this happens automatically when someone clicks on the select element
-// this is done in the setupProviderSelector function
-
-
-// step 2, get the images from the provider
 export async function getImageUrls(limit: number = 10): Promise<string[]> {
     const provider = getProvider();
     const images = await provider.getImages(limit);
@@ -23,7 +18,6 @@ export function showPopup(content: string): void {
     popup_content.innerHTML = content;
 }
 
-// step 3, create the memory cards
 function updateBoardEventHandler(game: Game): void {
     const board_size_input = document.querySelector('#board-size-input') as HTMLInputElement;
     if(Number(board_size_input.value) <= 1) {
@@ -74,9 +68,6 @@ function setTopScores(): void {
     });
 }
 
-// global setup
-// change all default values here as needed
-
 const game = new Game();
 
 const new_game_button = document.querySelector('#new-game-button') as HTMLButtonElement;
@@ -86,6 +77,14 @@ new_game_button.addEventListener('click', async () => {
 
 // register the event handler for the board size input and setup the game when the page loads
 window.onload = () => { 
+    const api = new API();
+    api.playerGetPlayerData().then((data) => {
+        if (data && data.name) {
+            
+        }
+    }).catch((error) => {
+        console.error('Error fetching player data:', error);
+    });
     setProvider("cataas" as ProviderName); // setup the game with cataas as default
     game.setupGame(8); // setup the game with 8 pairs of cards as default
     setTopScores(); // get the top scores from the server and display them
