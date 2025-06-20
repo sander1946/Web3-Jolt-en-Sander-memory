@@ -1,6 +1,7 @@
 import { Card, Status } from './card.js';
 import { Board } from './board.js';
 import { getImageUrls, showPopup } from './main.js';
+import { API } from './api.js';
 
 export class Game {
     // game variables
@@ -265,8 +266,32 @@ export class Game {
             showPopup(`<h2>Game Over</h2>
                 <p>You found all pairs!</p>
                 <p>Your score is: ${this.score}</p>
-                <p>Your time is: ${this.elapsed_time} seconds</p>`);
+                <p>Your time is: ${this.elapsed_time} seconds</p>
+                <button id="save-score-button">Save Score</button>
+            `);
 
+            // Add event listener to the save score button
+            document.getElementById('save-score-button')!.addEventListener('click', async () => {
+                const api = new API();
+                let player = await api.playerGetPlayerData();
+                let preferences = await api.playerGetPreferences();
+                if (player !== null) {
+                    if (preferences === null) {
+                        preferences = { 
+                            preferred_api: '', 
+                            color_closed: '', 
+                            color_found: ''
+                        }; // default provider if no preferences are set
+                    }
+                    api.publicSaveGame({
+                        id: player.id,
+                        score: this.score,
+                        api: preferences.preferred_api,
+                        color_closed: preferences.color_closed,
+                        color_found: preferences.color_found,
+                    });
+                }
+            });
         }
     }
 }

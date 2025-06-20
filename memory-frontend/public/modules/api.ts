@@ -1,5 +1,5 @@
 import type { adminAggregate, adminDateMap, adminPlayer, playerData, playerGames, playerPreferences, playerScores, PlayerToken } from "./interfaces";
-import { showPopup } from "./main";
+import { showPopup } from "./main.js";
 
 export class API {
   private baseUrl: string;
@@ -100,16 +100,14 @@ export class API {
     }
   }
 
-  async publicSaveGame(): Promise<void> {
+  async publicSaveGame(data: any): Promise<void> {
     try {
       const response = await fetch(`${this.baseUrl}/game/save`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          // TODO: Replace with actual game data
-        }),
+        body: JSON.stringify(data),
       });
       if (response.status === 400) {
         throw new Error('Bad Request: Gegevens kloppen niet met het model');
