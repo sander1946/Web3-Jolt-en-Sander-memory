@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Memory</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="page-content">
+        <!-- Information header, On the top of the page -->
+        <div class="header-wrapper">
+            <div class="header">
+                <h1>Login</h1>
+            </div>
+        </div> 
+
+        <!-- 6x6 Game board, in the middle left of the page -->
+        <div class="login-container">
+            <form id="form">
+                <div id="error"></div>
+                <h2 class="login-header">Vul hier uw gegevens in</h2>
+                <div class="container">
+                    <label for="username"><b>Gebruikersnaam:</b></label>
+                    <input type="text" placeholder="JohnDoe1" name="username" required>
+                    <label for="password"><b>Wachtwoord:</b></label>
+                    <input type="password" placeholder="**********" name="password" required>
+                    <span class="psw"><a href="#">Wachtwoord vergeten?</a></span>
+                    <button type="submit" id="submit">Login</button>
+                    <span class="new-account"><a href="/register">Nog geen account? Maak er hier een aan!</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/login.js"></script>
+</body>
+</html>
