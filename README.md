@@ -2,6 +2,15 @@
 
 Om dit projecte te kunnen draaien, is docker en docker compose nodig
 
+<!-- TODO: bug -->
+Eerst moet npm install uitgevoerd worden binnen de folder "memory-admin":
+
+```bash
+cd memory-admin
+npm install
+cd ..
+```
+
 Alle servers kun je starten met de volgende commando
 
 ```bash
