@@ -252,7 +252,7 @@ export class Game {
         this.stopViewTimer();
 
         this.pares_found++;
-        this.score += 10;
+        this.score = this.elapsed_time; // set the score to the elapsed time //TODO: implement/find a better scoring system
         const pairs_counter: HTMLElement | null = document.querySelector('#pairs-count');
         if (pairs_counter === null) {
             console.error('Pairs counter element not found');
