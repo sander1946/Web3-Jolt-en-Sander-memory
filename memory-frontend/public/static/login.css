@@ -221,3 +221,39 @@ span.new-account a {
         justify-content: center;
     }
 }
+
+/* navbar */
+@media (max-width: 630px) {
+    .header-wrapper {
+        justify-content: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .header-wrapper h1 {
+        margin-bottom: 0px;
+    }
+
+    .header-wrapper a {
+        margin: 0px;
+    }
+
+    .header-wrapper h2 {
+        font-size: 1.5em; /* TODO maybe change discuss with San */
+        margin: 0px;
+    }
+
+    .home{
+        order: 2;
+    }
+
+    .header{
+        order: 1;
+    }
+
+    .login{
+        order: 3;
+    }
+}
