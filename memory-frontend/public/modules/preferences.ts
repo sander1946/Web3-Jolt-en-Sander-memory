@@ -33,6 +33,27 @@ function setupSavePreferencesButton(): void {
     });
 }
 
+function setupChangeEmailButton(): void {
+    let changeEmailButton = document.getElementById('change-email') as HTMLButtonElement;
+    changeEmailButton.addEventListener('click', async () => {
+        let api = new API();
+        let newEmail = prompt("Please enter your new email address:");
+        if (newEmail) {
+            try {
+                await api.playerUpdateEmail(newEmail);
+                showPopup(`<h2>Email updated successfully!</h2>
+                    <p>Your email has been updated to: ${newEmail}</p>
+                    <p><a href="/">Go back to the game</a></p>`);
+            } catch (error) {
+                console.error('Error updating email:', error);
+                showPopup("There was an error updating your email.");
+            }
+        } else {
+            showPopup("No email entered. Please try again.");
+        }
+    });
+}
+
 const api = new API();
 
 window.onload = async () => { 
@@ -98,4 +119,5 @@ window.onload = async () => {
         preferred_api: providerSelect.value,
     } as playerPreferences)); // save the preferences to localStorage
     setupSavePreferencesButton(); // setup the save preferences button
+    setupChangeEmailButton(); // setup the change email button
 };

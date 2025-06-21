@@ -14,7 +14,7 @@ export async function getImageUrls(limit: number = 10): Promise<string[]> {
 
 function setTopScores(): void {
     let top_scores_list = document.querySelector('.leaderboard-list') as HTMLOListElement;
-    top_scores_list.innerHTML = ''; // clear the top scores div
+    top_scores_list.innerHTML = '<li><span class="leaderboard-item">-----</span><span class="leaderboard-score"></span></li><li><span class="leaderboard-item">-----</span><span class="leaderboard-score"></span></li><li><span class="leaderboard-item">-----</span><span class="leaderboard-score"></span></li><li><span class="leaderboard-item">-----</span><span class="leaderboard-score"></span></li><li><span class="leaderboard-item">-----</span><span class="leaderboard-score"></span></li>'; // clear the top scores div
     let api = new API();
     api.publicGetTopScores().then((scores) => {
         if (!Array.isArray(scores) || scores.length === 0) {
@@ -31,6 +31,7 @@ function setTopScores(): void {
         while (filledScores.length < 5) {
             filledScores.push({ username: "-----", score: 0 });
         }
+        top_scores_list.innerHTML = ''; // clear the top scores div
         filledScores.slice(0, 5).forEach((score) => {
             let li = document.createElement('li');
             let name_span = document.createElement('span');
@@ -51,6 +52,45 @@ function setTopScores(): void {
     }).catch((error) => {
         console.error('Error fetching top scores:', error);
         top_scores_list.innerText = '<span class="error">Error fetching top scores</span>';
+    });
+}
+
+function setAvgTimes(): void {
+    let personal_avg_time = document.querySelector('#avg-time-personal') as HTMLSpanElement;
+    let personal_avg_time_result = '';
+    let global_avg_time = document.querySelector('#avg-time-global') as HTMLSpanElement;
+    let global_avg_time_result = '';
+    let api = new API();
+    api.publicGetScores().then((times) => {
+        if (!times || !Array.isArray(times) || times.length === 0) {
+            global_avg_time_result = '<span class="error">No global average time available</span>';
+            return;
+        }
+
+        // Calculate global average time
+        let globalAvg = times.reduce((sum, score) => sum + score.score, 0) / times.length;
+        global_avg_time_result = `${globalAvg.toFixed(2)} seconds`;
+    }).catch((error) => {
+        console.error('Error fetching average times:', error);
+        personal_avg_time_result = '<span class="error">Error fetching personal average time</span>';
+        global_avg_time_result = '<span class="error">Error fetching global average time</span>';
+    });
+
+    api.playerGetGames().then((games) => {
+        if (!games || !Array.isArray(games) || games.length === 0) {
+            personal_avg_time_result = '<span class="error">No personal average time available</span>';
+            return;
+        }
+        // Calculate personal average time
+        let personalAvg = games.reduce((sum, game) => sum + game.score, 0) / games.length;
+        personal_avg_time_result = `${personalAvg.toFixed(2)} seconds`;
+        personal_avg_time.innerHTML = personal_avg_time_result;
+        global_avg_time.innerHTML = global_avg_time_result;
+    }).catch((error) => {
+        console.error('Error fetching personal average times:', error);
+        personal_avg_time_result = '<span class="error">Error fetching personal average time</span>';
+        personal_avg_time.innerHTML = personal_avg_time_result;
+        global_avg_time.innerHTML = global_avg_time_result;
     });
 }
 
@@ -109,4 +149,5 @@ window.onload = async () => {
     }
     game.setupGame(15); // setup the game with 15 pairs of cards as default
     setTopScores(); // get the top scores from the server and display them
+    setAvgTimes(); // get the average times from the server and display them
 };
