@@ -4,19 +4,17 @@
   </header>
 </a>
 <nav class="navbar">
-  <ul>
+  <ul class="navbar-list">
     <li>
       <a [routerLink]="['/']" routerLinkActive="active">Home</a>
     </li>
     <li>
-      <a [routerLink]="['/listings']" routerLinkActive="active">Listings</a>
+      <a [routerLink]="['/overzicht']" routerLinkActive="active">Overzicht</a>
     </li>
     <li>
-      <a [routerLink]="['/add-listing']" routerLinkActive="active">Add Listing</a>
+      <a [routerLink]="['/login']" routerLinkActive="active">Login</a>
     </li>
-  </ul>
-  <ul class="right">
-    <li>
+		<li class="push-right">
       <a [routerLink]="['/about']" routerLinkActive="active">About</a>
     </li>
     <li>
@@ -26,4 +24,15 @@
       <a [routerLink]="['/login']" routerLinkActive="active">Login</a>
     </li>
   </ul>
+  <!-- <ul class="right">
+    <li>
+      <a [routerLink]="['/about']" routerLinkActive="active">About</a>
+    </li>
+    <li>
+      <a [routerLink]="['/contact']" routerLinkActive="active">Contact</a>
+    </li>
+    <li>
+      <a [routerLink]="['/login']" routerLinkActive="active">Login</a>
+    </li>
+  </ul> -->
 </nav>
