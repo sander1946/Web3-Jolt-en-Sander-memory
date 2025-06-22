@@ -1,0 +1,180 @@
+/* Shared overrides used in small screen breakpoints */
+@media (max-width: 630px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "game-board"
+            "sidebar";
+        grid-template-columns: 95vw;
+    }
+
+    .game-information {
+        display: block;
+    }
+
+    .time-past {
+        margin-left: 0px;
+    }
+
+    .header-wrapper {
+        justify-content: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .header-wrapper h1 {
+        margin-bottom: 0px;
+    }
+
+    .header-wrapper h2 {
+        font-size: 1.5em;
+        margin: 0px;
+    }
+
+    .header-wrapper a {
+        margin: 0px;
+    }
+
+    .home {
+        order: 2;
+    }
+
+    .header {
+        order: 1;
+    }
+
+    .login {
+        order: 3;
+    }
+}
+
+/* Individual media queries for specific grid-column changes */
+@media (max-width: 300px) {
+    .game-board:has(.card-container) {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 90vw;
+    }
+}
+
+@media (min-width: 300px) and (max-width: 400px) {
+    .game-board:has(.card-container) {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 90vw;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 500px) {
+    .game-board:has(.card-container) {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 90vw;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 630px) {
+    .game-board:has(.card-container) {
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 90vw;
+    }
+}
+
+@media (min-width: 630px) and (max-width: 750px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "game-board"
+            "sidebar";
+        grid-template-columns: 95vw;
+        justify-content: center;
+    }
+
+    .game-board:has(.card-container) {
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 90vw;
+    }
+
+    .game-information {
+        display: block;
+    }
+
+    .time-past {
+        margin-left: 0px;
+    }
+}
+
+@media (min-width: 750px) and (max-width: 1000px) {
+    .page-content {
+        grid-template-areas: 
+            "header header"
+            "game-board sidebar";
+        grid-template-columns: calc(95vw - 380px) 360px;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+
+    .game-board:has(.card-container) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .game-information {
+        display: block;
+    }
+
+    .time-past {
+        margin-left: 0px;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+    .page-content {
+        grid-template-areas: 
+            "header header"
+            "game-board sidebar";
+        grid-template-columns: calc(95vw - 380px) 360px;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+
+    .game-board:has(.card-container) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .game-information {
+        display: block;
+    }
+
+    .time-past {
+        margin-left: 0px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+    .page-content {
+        grid-template-areas: 
+            "header header"
+            "game-board sidebar";
+        grid-template-columns: calc(95vw - 380px) 360px;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+
+    .game-board:has(.card-container) {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (min-width: 1500px) {
+    .page-content {
+        grid-template-areas: 
+            "header header"
+            "game-board sidebar";
+        grid-template-columns: 1120px 360px;
+        grid-template-rows: min-content;
+        justify-content: center;
+    }
+
+    .game-board:has(.card-container) {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
