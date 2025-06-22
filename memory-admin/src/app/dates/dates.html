@@ -1,3 +1,5 @@
-<div class = "dates" *ngFor="let date of dateMap() | keyvalue">
-  <p class = "date">{{ date.key }}: {{ date.value }}</p>
+<div class = "dates">
+  <div class = "date" *ngFor="let date of dateMap() | keyvalue">
+    <div class = "date-data">{{ date.key }}: {{ date.value }}</div>  
+  </div>
 </div>
