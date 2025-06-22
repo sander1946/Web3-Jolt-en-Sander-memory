@@ -4,7 +4,7 @@
       <a [routerLink]="['/']" routerLinkActive="active">Home</a>
     </li>
     <li>
-      <a [routerLink]="['/dashboard']" routerLinkActive="active">Overzicht</a>
+      <a *ngIf="isLoggedIn()" [routerLink]="['/dashboard']" routerLinkActive="active">Overzicht</a>
     </li>
     <li class="push-right">
       <a *ngIf="!isLoggedIn()" [routerLink]="['/login']" routerLinkActive="active">Login</a>

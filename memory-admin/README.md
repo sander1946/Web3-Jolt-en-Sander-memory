@@ -18,30 +18,6 @@ nvm install 22.12.0
 nvm use 22.12.0
 ```
 
-2. 
-
-```bash
-npm install
-
-```
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-### Om het project buiten docker te runnen moeten de volgend commando's uitgevoerd worden
-
-1. Npm 22.12 is nodig om dit project te runnen, Node Version Manager kan hiet het beste voor worden gebruikt
-
-```bash
-nvm install 22.12.0
-nvm use 22.12.0
-```
-
 2. Installeer Angular CLI
 
 ```bash
@@ -53,7 +29,6 @@ npm install -g @angular/cli
 ```bash
 npm install
 ```
-
 
 5. Als laatste, run het project
 
