@@ -1,3 +1,7 @@
 <p>players works!</p>
-<p>Player Data: {{ playerData() }}</p>
 <!-- TODO: make this pretty-->
+<div *ngFor="let player of playerData()">
+  <p>Player username: {{ player["username"] }}</p>
+  <p>Player Email: {{ player["email"] }}</p>
+  <hr />
+</div>
