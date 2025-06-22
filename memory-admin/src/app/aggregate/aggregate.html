@@ -1,7 +1,12 @@
 <!-- TODO: make this pretty-->
-<p>aantal_spellen: {{ aggregateData()[0]["aantal_spellen"] }}</p>
-<p>aantal_spelers: {{ aggregateData()[1]["aantal_spelers"] }}</p>
-<div *ngFor="let item of aggregateData()[2]">
-  <p>API: {{ item["api"] }}</p>
-  <p>Aantal: {{ item["aantal"] }}</p>
+<div class = "total">
+  <p class = "aantal-spellen">aantal_spellen: <strong>{{ aggregateData()[0]["aantal_spellen"] }}</strong></p>
+  <p class = aantal-spelers>aantal_spelers: <strong>{{ aggregateData()[1]["aantal_spelers"] }}</strong></p>
+</div>
+<div class = "api-data">
+  <h2>Api informatie</h2>
+  <div class = "api-datapoint" *ngFor="let item of aggregateData()[2]">
+    <div>API: {{ item["api"] }}</div>
+    <div>Aantal: {{ item["aantal"] }}</div>
+  </div>
 </div>

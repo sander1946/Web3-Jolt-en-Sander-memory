@@ -1,0 +1,25 @@
+.total {
+  background-color: #163a75ed;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.total p {
+  color: #ffffff;
+}
+
+.api-data {
+  background-color: #163a75ed;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.api-datapoint {
+  background-color: #ffffff;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
