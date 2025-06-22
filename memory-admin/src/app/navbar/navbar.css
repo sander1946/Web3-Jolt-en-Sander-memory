@@ -1,18 +1,24 @@
+.navbar{
+  margin: 0 px;
+  padding: 0 px;
+}
+
 .navbar-list {
+  background-color: rgb(22, 58, 117, 0.93);
   display: flex;
   list-style: none;
-  padding: 0;
+  padding: 10px;
   margin: 0;
-  width: 100%;
 }
 
 .navbar-list li {
-  margin-right: 10px;
+  margin: 10px;
 }
 
 .navbar-list a {
   text-decoration: none;
-  color: #000000;
+  color: #ffffff;
+  font-size: 1.4em;
 
 }
 
