@@ -1,8 +1,29 @@
-<p>navbar works!</p>
-
-
-<!-- TODO: -->
-<!-- Home pagina -->
-<!-- inlog pagina -->
-<!-- overzicht pagina -->
-  
+<a [routerLink]="['/']">
+  <header class="brand-name">
+    <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true" />
+  </header>
+</a>
+<nav class="navbar">
+  <ul>
+    <li>
+      <a [routerLink]="['/']" routerLinkActive="active">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/listings']" routerLinkActive="active">Listings</a>
+    </li>
+    <li>
+      <a [routerLink]="['/add-listing']" routerLinkActive="active">Add Listing</a>
+    </li>
+  </ul>
+  <ul class="right">
+    <li>
+      <a [routerLink]="['/about']" routerLinkActive="active">About</a>
+    </li>
+    <li>
+      <a [routerLink]="['/contact']" routerLinkActive="active">Contact</a>
+    </li>
+    <li>
+      <a [routerLink]="['/login']" routerLinkActive="active">Login</a>
+    </li>
+  </ul>
+</nav>
