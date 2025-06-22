@@ -6,7 +6,11 @@
 <div class = "api-data">
   <h2>Api informatie</h2>
   <div class = "api-datapoint" *ngFor="let item of aggregateData()[2]">
-    <div>API: {{ item["api"] }}</div>
+    @if(item["api"] == "") {
+      <div>API: zonder voorkeur</div>
+    } @else {
+      <div>API: {{ item["api"] }}</div>
+    }
     <div>Aantal: {{ item["aantal"] }}</div>
   </div>
 </div>

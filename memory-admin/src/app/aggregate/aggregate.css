@@ -16,6 +16,11 @@
   border-radius: 10px;
 }
 
+h2 {
+  color: #ffffff;
+  text-align: center;
+}
+
 .api-datapoint {
   background-color: #ffffff;
   padding: 5px;
