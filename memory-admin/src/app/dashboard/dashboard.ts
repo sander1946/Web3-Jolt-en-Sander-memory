@@ -4,10 +4,11 @@ import { adminAggregate, adminDateMap, adminPlayer } from '../api-interfaces';
 import { Aggregate } from '../aggregate/aggregate';
 import { Players } from '../players/players';
 import { Dates } from '../dates/dates';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [Aggregate, Players, Dates],
+  imports: [CommonModule, Aggregate, Players, Dates],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })

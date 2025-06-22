@@ -1,9 +1,10 @@
 import { Component, input } from '@angular/core';
 import { adminDateMap } from '../api-interfaces';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dates',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './dates.html',
   styleUrl: './dates.css'
 })

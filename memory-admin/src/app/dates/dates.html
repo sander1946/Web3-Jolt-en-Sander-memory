@@ -1,2 +1,4 @@
-<p>dates works!</p>
-<p>Dates {{ dateMap() }}</p>
+<div *ngFor="let date of dateMap() | keyvalue">
+  <!-- TODO: make this pretty-->
+  <p>{{ date.key }}: {{ date.value }}</p>
+</div>

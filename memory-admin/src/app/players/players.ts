@@ -1,9 +1,10 @@
 import { Component, input } from '@angular/core';
 import { adminPlayer } from '../api-interfaces';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-players',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './players.html',
   styleUrl: './players.css'
 })
