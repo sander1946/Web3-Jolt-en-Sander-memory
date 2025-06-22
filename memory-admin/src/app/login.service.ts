@@ -11,9 +11,6 @@ export class LoginService {
   }
 
   async submitLogin(username: string, password: string) {
-    console.log(
-      `Login request received: username: ${username}, password: ${password}`
-    );
     let result = await this.apiService.adminLogin(
       username,
       password
