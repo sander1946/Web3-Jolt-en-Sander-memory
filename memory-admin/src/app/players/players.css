@@ -1,7 +1,14 @@
+.h2 {
+  color: #ffffff;
+}
+
 .players{
+  background-color: #163a75ed;
+}
+
+.players-list{
   display: flex;
   flex-wrap: wrap; 
-  background-color: #163a75ed;
   margin: 10px;
   padding: 5px;
   border-radius: 10px;
