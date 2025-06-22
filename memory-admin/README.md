@@ -1,14 +1,26 @@
-# MemoryAdmin
+# Memory Admin door Sander Kleine en Jolt Kolk
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
+## U kunt er voor kiezen om het project binnen docker te draaien of niet
 
-## Development server
+### Om het project binnen docker te draaien, voer de volgende comando's uit
 
-## Make shure you are using npm v22.12.0, this porject will not work without it!
-
-First, install all required packages:
-
+```bash
+docker build . -t memory-admin
+docker run -p 4200:4200 memory-admin
 ```
+
+### Om het project buiten docker te runnen moeten de volgend commando's uitgevoerd worden
+
+1. Npm 22.12 is nodig om dit project te runnen, Node Version Manager kan hiet het beste voor worden gebruikt
+
+```bash
+nvm install 22.12.0
+nvm use 22.12.0
+```
+
+2. 
+
+```bash
 npm install
 
 ```
@@ -20,3 +32,31 @@ ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+### Om het project buiten docker te runnen moeten de volgend commando's uitgevoerd worden
+
+1. Npm 22.12 is nodig om dit project te runnen, Node Version Manager kan hiet het beste voor worden gebruikt
+
+```bash
+nvm install 22.12.0
+nvm use 22.12.0
+```
+
+2. Installeer Angular CLI
+
+```bash
+npm install -g @angular/cli
+```
+
+3. Installeer alle npm benodigheden
+
+```bash
+npm install
+```
+
+
+5. Als laatste, run het project
+
+```bash
+ng serve --host 0.0.0.0 --port 4200
+```
