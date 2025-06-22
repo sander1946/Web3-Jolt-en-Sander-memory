@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from './home/home';
 import { Login } from './login/login';
-import { Details } from './details/details';
 import { Dashboard } from './dashboard/dashboard';
 
 const routeConfig: Routes = [
@@ -19,11 +18,6 @@ const routeConfig: Routes = [
     path: 'login',
     component: Login,
     title: 'Login | Memory Admin',
-  },
-  { // TODO: remove this route when not needed
-    path: 'details/:id',
-    component: Details,
-    title: 'Details page',
   },
 ];
 
