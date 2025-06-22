@@ -1,5 +1,6 @@
 .players{
   display: flex;
+  flex-wrap: wrap; 
   background-color: #163a75ed;
   margin: 10px;
   padding: 5px;
@@ -9,5 +10,6 @@
 .player{
   background-color: #ffffff;
   margin:5px;
+  padding: 5px;
   border-radius: 10px;
 }
