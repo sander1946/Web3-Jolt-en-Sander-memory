@@ -8,7 +8,7 @@
     </li>
     <li class="push-right">
       <a *ngIf="!isLoggedIn()" [routerLink]="['/login']" routerLinkActive="active">Login</a>
-      <a *ngIf="isLoggedIn()" (click)="logout()">Logout</a>
+      <a *ngIf="isLoggedIn()" (click)="logout()" [routerLink]="['/#']" routerLinkActive="active">Logout</a>
     </li>
   </ul>
 </nav>
