@@ -16,7 +16,6 @@
 
 #error {
   min-width: 1px;
-  justify-content: center;
   color: red;
   font-weight: bold;
 }
@@ -76,6 +75,18 @@ span.new-account a {
   color: #606161;
 }
 
+.temp{
+  display: flex;
+  justify-content: space-between;
+}
+
+#error {
+  min-width: 1px;
+  justify-content: center;
+  color: red;
+  font-weight: bold;
+}
+
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
@@ -88,81 +99,37 @@ span.new-account a {
   }
 }
 
-@media (max-width: 300px) {
-  .page-content {
-    grid-template-areas:
-      "header"
-      "login-container"
-    ;
-    grid-template-columns: 95vw;
-    justify-content: center;
+@media (max-width: 430px) { 
+  .temp {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .temp .psw{
+    text-align: right;
   }
 }
 
-@media (min-width: 300px) and (max-width: 400px) {
-  .page-content {
-    grid-template-areas:
-      "header"
-      "login-container"
-    ;
-    grid-template-columns: 95vw;
-    justify-content: center;
-  }
+@media (max-width: 1500px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "login-container"
+        ;
+        grid-template-columns: 95vw;
+        justify-content: center;
+    }
 }
 
-@media (min-width: 400px) and (max-width: 500px) {
-  .page-content {
-    grid-template-areas:
-      "header"
-      "login-container"
-    ;
-    grid-template-columns: 95vw;
-    justify-content: center;
-  }
-}
-
-@media (min-width: 500px) and (max-width: 750px) {
-  .page-content {
-    grid-template-areas:
-      "header"
-      "login-container"
-    ;
-    grid-template-columns: 95vw;
-    justify-content: center;
-  }
-}
-
-@media (min-width: 750px) and (max-width: 1000px) {
-  .page-content {
-    grid-template-areas:
-      "header"
-      "login-container"
-    ;
-    grid-template-columns: 95vw;
-    justify-content: center;
-  }
-}
-
-@media (min-width: 1000px) and (max-width: 1200px) {
-  .page-content {
-    grid-template-areas:
-      "header"
-      "login-container"
-    ;
-    grid-template-columns: 95vw;
-    justify-content: center;
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 1500px) {
-  .page-content {
-    grid-template-areas:
-      "header"
-      "login-container"
-    ;
-    grid-template-columns: 95vw;
-    justify-content: center;
-  }
+@media (min-width: 1500px) {
+    .page-content {
+        grid-template-areas: 
+            "header"
+            "login-container"
+        ;
+        grid-template-columns: 95vw;
+        justify-content: center;
+    }
 }
 
 @media (min-width: 1500px) {
