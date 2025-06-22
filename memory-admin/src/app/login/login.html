@@ -1,1 +1,17 @@
-<p>login works!</p>
+<div class="login-container">
+  <form [formGroup]="loginForm" (submit)="submitLogin()"> 
+    <h2 class="login-header">Vul hier uw gegevens in</h2>
+    <div class="container">
+      <label for="username"><b>Gebruikersnaam:</b></label>
+      <input id="username" type="text" placeholder="JohnDoe1" formControlName="username" required />
+      <label for="password"><b>Wachtwoord:</b></label>
+      <input type="password" placeholder="**********" formControlName="password" required>
+      <div class="temp">
+        <div id="error"></div>
+        <div class="psw"><a href="#">Wachtwoord vergeten?</a></div>
+      </div>
+      <button type="submit" id="submit">Login</button>        
+      <span class="new-account"><a href="/register">Nog geen account? Maak er hier een aan!</a></span>
+    </div>
+  </form>
+</div>

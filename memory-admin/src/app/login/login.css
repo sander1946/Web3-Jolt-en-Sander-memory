@@ -1,0 +1,214 @@
+.login-container {
+  background-color: var(--items-background-color);
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.temp {
+  display: flex;
+  justify-content: space-between;
+}
+
+#error {
+  min-width: 1px;
+  justify-content: center;
+  color: red;
+  font-weight: bold;
+}
+
+input[type=text],
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #08a76d;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.container {
+  padding: 16px;
+}
+
+div.psw {
+  float: right;
+  padding-top: 0px;
+}
+
+div.psw a {
+  text-decoration: none;
+  color: #606161;
+}
+
+span.new-account {
+  width: 100%;
+}
+
+span.new-account a {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color: #606161;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+
+  .cancelbtn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 300px) {
+  .page-content {
+    grid-template-areas:
+      "header"
+      "login-container"
+    ;
+    grid-template-columns: 95vw;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 400px) {
+  .page-content {
+    grid-template-areas:
+      "header"
+      "login-container"
+    ;
+    grid-template-columns: 95vw;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 500px) {
+  .page-content {
+    grid-template-areas:
+      "header"
+      "login-container"
+    ;
+    grid-template-columns: 95vw;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 750px) {
+  .page-content {
+    grid-template-areas:
+      "header"
+      "login-container"
+    ;
+    grid-template-columns: 95vw;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 750px) and (max-width: 1000px) {
+  .page-content {
+    grid-template-areas:
+      "header"
+      "login-container"
+    ;
+    grid-template-columns: 95vw;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+  .page-content {
+    grid-template-areas:
+      "header"
+      "login-container"
+    ;
+    grid-template-columns: 95vw;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+  .page-content {
+    grid-template-areas:
+      "header"
+      "login-container"
+    ;
+    grid-template-columns: 95vw;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1500px) {
+  .page-content {
+    grid-template-areas:
+      "header"
+      "login-container"
+    ;
+    grid-template-columns: 95vw;
+    justify-content: center;
+  }
+}
+
+/* navbar */
+@media (max-width: 630px) {
+  .header-wrapper {
+    justify-content: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .header-wrapper h1 {
+    margin-bottom: 0px;
+  }
+
+  .header-wrapper a {
+    margin: 0px;
+  }
+
+  .header-wrapper h2 {
+    font-size: 1.5em;
+    /* TODO maybe change discuss with San */
+    margin: 0px;
+  }
+
+  .home {
+    order: 2;
+  }
+
+  .header {
+    order: 1;
+  }
+
+  .login {
+    order: 3;
+  }
+}
