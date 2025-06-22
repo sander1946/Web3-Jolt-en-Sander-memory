@@ -1,5 +1,6 @@
 <div class = "dates">
+  <h2>Amount of games played</h2>
   <div class = "date" *ngFor="let date of dateMap() | keyvalue">
-    <div class = "date-data">{{ date.key }}: {{ date.value }}</div>  
+    <div class = "date-data">{{ date.key }}: <strong>{{ date.value }}</strong></div>  
   </div>
 </div>
